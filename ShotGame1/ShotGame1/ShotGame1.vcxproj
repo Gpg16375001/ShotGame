@@ -84,6 +84,7 @@
     <ClCompile Include="ActEnemy6.cpp" />
     <ClCompile Include="ActEnemy7.cpp" />
     <ClCompile Include="ActEnemy8.cpp" />
+    <ClCompile Include="ActEnemy9.cpp" />
     <ClCompile Include="ActEnemySet1.cpp" />
     <ClCompile Include="ActObj.cpp" />
     <ClCompile Include="ActEnemy1.cpp" />

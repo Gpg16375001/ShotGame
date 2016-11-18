@@ -58,6 +58,8 @@
 #define ID_E7S		25
 #define ID_ENE8		26
 #define ID_E8S		27
+#define ID_ENE9		28
+#define ID_E9S		29
 
 #define ID_ESET1	40
 #define ID_ESET2	41
@@ -73,25 +75,25 @@
 typedef struct {
 	int idnum ;							// 配列位置 ( 番号 )
 	int mode ;							// モード , 状態	0 = 初期化
-	double xpos ;						// X軸の座標
-	double ypos ;						// Y軸の座標
+	double xpos ;						// X軸 の座標
+	double ypos ;						// Y軸 の座標
 	int xsize ;							// 横幅
 	int ysize ;							// 縦幅
-	int xboff ;							// ベースの絵のX軸の座標
-	int yboff ;							// ベースの絵のY軸の座標
-	int xmoff ;							// マスクの絵のX軸の座標
-	int ymoff ;							// マスクの絵のY軸の座標
+	int xboff ;							// ベースの絵の X軸 の座標
+	int yboff ;							// ベースの絵の Y軸 の座標
+	int xmoff ;							// マスクの絵の X軸 の座標
+	int ymoff ;							// マスクの絵の Y軸 の座標
 	int idx ;							// 何の絵か
 	int xoff ;							// 中心点の変更
-	int yoff ;
-	double xspd ;
-	double yspd ;
-	double xm ;		
-	double ym ;
-	int pchg[2] ;
-	int time ;
-	int cnt ;
-	int flg ;
+	int yoff ;							// 
+	double xspd ;						// X軸 のスピード
+	double yspd ;						// Y軸 のスピード
+	double xm ;							// 仮想の X軸
+	double ym ;							// 仮想の Y軸
+	int pchg[2] ;						// 好きなものに使える
+	int time ;							// タイムカウント	敵の行動変更など
+	int cnt ;							// カウント
+	int flg ;							// フラグ			敵の状態変更など
 	BYTE color ;
 } DT ;
 
@@ -136,5 +138,7 @@ void ActE7Shot( void ) ;							// ENEMY8 弾 のアクション
 void ActEnemy8( void ) ;
 void ActE8Shot( void ) ;
 void ActEnemySet1( void ) ;
+void ActEnemy9( void ) ;
+void ActE9Shot( void ) ;
 
 
