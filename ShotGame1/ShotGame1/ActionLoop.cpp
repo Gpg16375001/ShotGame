@@ -43,8 +43,8 @@ TBLJP ActJpTbl[ ] = {
 	ActE8Shot ,								// 27	ENEMY8 弾 のアクション
 	ActEnemy9 ,								// 28	ENEMY9 のアクション
 	ActE9Shot ,								// 29	ENEMY9 弾 のアクション
-	ActEnemy10 ,								// 30	ENEMY10 のアクション
-	ActE10Shot ,								// 31	ENEMY10 弾 のアクション
+	ActEnemy10 ,							// 30	ENEMY10 のアクション
+	ActE10Shot ,							// 31	ENEMY10 弾 のアクション
 	ActNull , 								// 32
 	ActNull , 								// 33
 	ActNull ,								// 34

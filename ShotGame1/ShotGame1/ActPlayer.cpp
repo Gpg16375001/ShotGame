@@ -37,15 +37,11 @@ void ActPlayer( void )
 
 			pp->cnt = 0 ;
 			pp->yspd = -4.0 ;
+			mciSendString( TEXT("play SE_SP3 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+//			mciSendString( TEXT("play SE_ST from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 			break ;
 
 		case 1 :
-			if ( pp->cnt > 40 )
-			{
-				mciSendString( TEXT("play SE_SP3 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
-				mciSendString( TEXT("play SE_ST from 0 notify") , NULL , 0 , hwnd ) ;	// 01
-				pp->cnt = 0 ;
-			}
 			pp->ypos += pp->yspd ;
 			if ( pp->ypos < 550.0 )
 			{
@@ -61,7 +57,7 @@ void ActPlayer( void )
 			{
 				if ( pp->cnt > 10 )
 				{
-					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+		//			mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 					pp->cnt = 0 ;
 				}
 				pp->yspd = -PSPD ;
@@ -70,7 +66,7 @@ void ActPlayer( void )
 			{
 				if ( pp->cnt > 10 )
 				{
-					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+	//				mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 					pp->cnt = 0 ;
 				}
 				pp->yspd = PSPD ;
@@ -79,7 +75,7 @@ void ActPlayer( void )
 			{
 				if ( pp->cnt > 10 )
 				{
-					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+//					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 					pp->cnt = 0 ;
 				}
 				pp->xspd = -PSPD ;
@@ -88,7 +84,7 @@ void ActPlayer( void )
 			{
 				if ( pp->cnt > 10 )
 				{
-					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+//					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 					pp->cnt = 0 ;
 				}
 				pp->xspd = PSPD ;
@@ -114,11 +110,14 @@ void ActPlayer( void )
 			{
 				psflg = 0 ;
 			}
+			if ( pp->cnt < 11 )
+			{
+				pp->cnt++ ;
+			}
+			PlayerMove( ) ;
 			break ;
 
 	}
-	pp->cnt++ ;
-	PlayerMove( ) ;
 	PEscheck( ) ;
 
 }
@@ -170,16 +169,10 @@ void PlayerMove( void )
 			/*
 				PLAYER 初期セット
 			*/
-			pp->xsize = 60 ;
-			pp->ysize = 60 ;
 			pp->xboff = 60 ;
 			pp->yboff = 0 ;
 			pp->xmoff = 60 ;
 			pp->ymoff = 60 ;
-			pp->xoff = -30 ;									// 中心点の変更 X軸
-			pp->yoff = -40 ;									// 中心点の変更 Y軸
-			pp->idx = 1 ;
-			pp->mode = 1 ;
 
 			pp->pchg[0] = 0 ;
 			break ;

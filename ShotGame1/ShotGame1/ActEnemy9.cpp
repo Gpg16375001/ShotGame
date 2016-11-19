@@ -49,7 +49,7 @@ void ActEnemy9( void )
 					if ( pp->cnt != 0 )
 					{
 						pp->yspd = 4.0 ;
-						if ( pp->ypos == (WINDOW_H - 200) )
+						if ( pp->ypos == (WINDOW_H - 100) )
 						{
 							pp->flg = 7 ;
 						}
@@ -67,6 +67,10 @@ void ActEnemy9( void )
 					if ( pp->cnt != 0 )
 					{
 						pp->yspd = 4.0 ;
+						if ( pp->ypos == (WINDOW_H - 100) )
+						{
+							pp->flg = 7 ;
+						}
 					}
 					else if ( pp->xpos >= 250 )
 					{
@@ -80,6 +84,10 @@ void ActEnemy9( void )
 					if ( pp->cnt != 0 )
 					{
 						pp->yspd = 4.2 ;
+						if ( pp->ypos == (WINDOW_H - 100) )
+						{
+							pp->flg = 7 ;
+						}
 					}
 					else if ( pp->xpos >= 400 )
 					{
@@ -93,6 +101,10 @@ void ActEnemy9( void )
 					if ( pp->cnt != 0 )
 					{
 						pp->yspd = 4.0 ;
+						if ( pp->ypos == (WINDOW_H - 100) )
+						{
+							pp->flg = 7 ;
+						}
 					}
 					else if ( pp->xpos <= 550 )
 					{
@@ -106,6 +118,10 @@ void ActEnemy9( void )
 					if ( pp->cnt != 0 )
 					{
 						pp->yspd = 4.0 ;
+						if ( pp->ypos == (WINDOW_H - 100) )
+						{
+							pp->flg = 7 ;
+						}
 					}
 					else if ( pp->xpos <= 700 )
 					{
@@ -151,13 +167,12 @@ void ActEnemy9( void )
 							}
 						}
 
-						if ( pp->cnt > 180 )
+						if ( pp->cnt > 120 )
 						{
 							pp->flg = pp->pchg[1] ;
 						}
 
 					}
-					pp->time-- ;
 					break ;
 
 				case 7 :
@@ -176,7 +191,7 @@ void ActEnemy9( void )
 								obj[no].xspd = i * 1.5 ;
 								obj[no].yspd = (8.0 - (i * 0.9)) * -1 ;
 
-								pp->time = 10 ;
+								pp->time = 5 ;
 							}
 
 							no = ObjSearch( O_ES , MAX_ES ) ;	// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
@@ -190,12 +205,11 @@ void ActEnemy9( void )
 								obj[no].xspd = i * -1.5 ;
 								obj[no].yspd = (8.0 - (i * 0.9)) * -1 ;
 
-								pp->time = 10 ;
+								pp->time = 5 ;
 							}
 						}
 
 					}
-					pp->time-- ;
 					break ;
 			}
 			pp->time-- ;

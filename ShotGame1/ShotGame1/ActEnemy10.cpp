@@ -70,7 +70,7 @@ void ActEnemy10( void )
 					if ( pp->time < 0 )
 					{
 						pp->cnt += 1 ;
-						for ( i = 120 ; i < 470 ; (i += 5) )
+						for ( i = 120 ; i < 460 ; (i += 5) )
 						{
 							no = ObjSearch( O_ES , MAX_ES ) ;	// 空いている配列を見つける
 							if ( no != -1 )						// 空いていたら
@@ -83,17 +83,17 @@ void ActEnemy10( void )
 								obj[no].xspd = cos( 3.14 / 180 * (i + deblt) ) * 8.0 ;
 								obj[no].yspd = sin( 3.14 / 180 * (i + deblt) ) * 8.0 ;
 
-								pp->time = 4 ;
+								pp->time = 3 ;
 
 							}
 
-							if ( pp->cnt > 100 )
+							if ( pp->cnt > 90 )
 							{
 								pp->flg = pp->pchg[1] ;
 							}
 
 						}
-						deblt += 2 ;
+						deblt += 4 ;
 					}
 					pp->time-- ;
 					break ;
@@ -156,7 +156,7 @@ void ActE10Shot( void )
 			pp->mode = 1 ;
 			pp->xoff = -8 ;										// 中心点の変更 X軸
 			pp->yoff = -8 ;										// 中心点の変更 Y軸
-			mciSendString( TEXT("play SE_ES2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+			mciSendString( TEXT("play SE_ES1 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 			break ;
 
 		case 1 :
