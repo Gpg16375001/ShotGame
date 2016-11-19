@@ -161,6 +161,8 @@ void Enemy1Roll( void )
 			break ;
 
 		case 1 :
+		case 2 :
+		case 3 :
 			if ( pp->pchg[0] < 3 )
 			{
 				pp->xboff = pp->pchg[0] * 70 ;

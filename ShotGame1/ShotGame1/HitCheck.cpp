@@ -100,10 +100,10 @@ int PEscheck( void )
 
 	if ( pp->mode != 99 )
 	{
-		pl = (int)pp->xpos - 15 ;
-		pr = (int)pp->xpos + 15 ;
-		pu = (int)pp->ypos - 10 ;
-		pd = (int)pp->ypos + 10 ;
+		pl = (int)pp->xpos - 10 ;
+		pr = (int)pp->xpos + 10 ;
+		pu = (int)pp->ypos - 5 ;
+		pd = (int)pp->ypos + 5 ;
 
 		for ( i = O_ES ; i < (O_ES+MAX_ES) ; i++ )
 		{

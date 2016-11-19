@@ -178,6 +178,7 @@ void ActEnemy9( void )
 				case 7 :
 					if ( pp->time < 0 )
 					{
+						mciSendString( TEXT("play SE_ES2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 						for ( i = 0 ; i < 3 ; i++ )
 						{
 							no = ObjSearch( O_ES , MAX_ES ) ;	// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é

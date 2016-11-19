@@ -54,7 +54,7 @@ TBLJP ActJpTbl[ ] = {
 	ActNull ,								// 38
 	ActNull ,								// 39
 	ActEnemySet1 ,							// 40	ActEnemySet1
-	ActNull , 								// 41
+	ActEnemySet2 , 							// 41	ActEnemySet2
 	ActNull , 								// 42
 	ActNull , 								// 43
 	ActNull ,								// 44

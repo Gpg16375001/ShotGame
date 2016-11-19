@@ -57,7 +57,7 @@ void ActPlayer( void )
 			{
 				if ( pp->cnt > 10 )
 				{
-		//			mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 					pp->cnt = 0 ;
 				}
 				pp->yspd = -PSPD ;
@@ -66,7 +66,7 @@ void ActPlayer( void )
 			{
 				if ( pp->cnt > 10 )
 				{
-	//				mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 					pp->cnt = 0 ;
 				}
 				pp->yspd = PSPD ;
@@ -75,7 +75,7 @@ void ActPlayer( void )
 			{
 				if ( pp->cnt > 10 )
 				{
-//					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 					pp->cnt = 0 ;
 				}
 				pp->xspd = -PSPD ;
@@ -84,7 +84,7 @@ void ActPlayer( void )
 			{
 				if ( pp->cnt > 10 )
 				{
-//					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 					pp->cnt = 0 ;
 				}
 				pp->xspd = PSPD ;

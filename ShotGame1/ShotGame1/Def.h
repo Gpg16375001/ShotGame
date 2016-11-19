@@ -145,4 +145,6 @@ void ActE9Shot( void ) ;
 void ActEnemy10( void ) ;
 void ActE10Shot( void ) ;
 void PlayerMove( void ) ;
+void ActEnemySet2( void ) ;
+
 

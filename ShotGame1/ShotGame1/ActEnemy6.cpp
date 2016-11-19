@@ -42,6 +42,15 @@ void ActEnemy6( void )
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
 
+			if ( pp->ypos > 200 )
+			{
+				pp->xspd = 0 ;
+				pp->yspd = 0 ;
+				pp->mode = 2 ;
+			}
+			break ;
+
+		case 2 :
 			if ( pp->time < 0 )
 			{
 				mciSendString( TEXT("play SE_ES3 from 0 notify") , NULL , 0 , hwnd ) ;	// ES3

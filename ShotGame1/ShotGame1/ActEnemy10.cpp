@@ -69,6 +69,7 @@ void ActEnemy10( void )
 					pp->yspd = 0 ;
 					if ( pp->time < 0 )
 					{
+						mciSendString( TEXT("play SE_ES1 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 						pp->cnt += 1 ;
 						for ( i = 120 ; i < 460 ; (i += 5) )
 						{
@@ -83,7 +84,7 @@ void ActEnemy10( void )
 								obj[no].xspd = cos( 3.14 / 180 * (i + deblt) ) * 8.0 ;
 								obj[no].yspd = sin( 3.14 / 180 * (i + deblt) ) * 8.0 ;
 
-								pp->time = 3 ;
+								pp->time = 2 ;
 
 							}
 
@@ -156,7 +157,6 @@ void ActE10Shot( void )
 			pp->mode = 1 ;
 			pp->xoff = -8 ;										// 中心点の変更 X軸
 			pp->yoff = -8 ;										// 中心点の変更 Y軸
-			mciSendString( TEXT("play SE_ES1 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 			break ;
 
 		case 1 :

@@ -36,15 +36,24 @@ void ActEnemy7( void )
 			pp->idx = 2 ;
 			pp->mode = 1 ;										// mode1 ‚ÉˆÚ‚é
 			pp->time = 10 ;
-			pp->flg = 2 ;
 			break ;
 
 		case 1 :
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
 
+			if ( pp->ypos > 200 )
+			{
+				pp->xspd = 0 ;
+				pp->yspd = 0 ;
+				pp->mode = 2 ;
+			}
+			break ;
+
+		case 2 :
 			if ( pp->time < 0 )
 			{
+				mciSendString( TEXT("play SE_ES1 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 				for ( i = 0 ; i < 360 ; (i += 4) )
 				{
 					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
@@ -57,19 +66,19 @@ void ActEnemy7( void )
 						switch ( pp->flg )
 						{
 							case  0 :
-								obj[no].xspd = cos( 3.14 / 180 * i ) * 1.0 ;
-								obj[no].yspd = sin( 3.14 / 180 * i ) * 4.0 ;
+								obj[no].xspd = cos( PI / 180 * i ) *  3.0 ;
+								obj[no].yspd = sin( PI / 180 * i ) * 12.0 ;
 								break ;
 
 							case  1 :
-								obj[no].xspd = cos( 3.14 / 180 * i ) * 4.0 ;
-								obj[no].yspd = sin( 3.14 / 180 * i ) * 1.0 ;
+								obj[no].xspd = cos( PI / 180 * i ) * 12.0 ;
+								obj[no].yspd = sin( PI / 180 * i ) *  3.0 ;
 								break ;
 
 						}
 						pp->flg++ ;
 						pp->time = 60 ;
-						if ( pp->flg > 2 )
+						if ( pp->flg > 1 )
 						{
 							pp->flg = 0 ;
 						}
