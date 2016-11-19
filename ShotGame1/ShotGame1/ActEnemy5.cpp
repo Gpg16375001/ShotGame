@@ -79,7 +79,7 @@ void ActEnemy5( void )
 					{
 						pp->yspd = -4.0 ;
 					}
-					else if ( pp->ypos >= 300 )
+					else if ( pp->ypos >= 250 )
 					{
 						pp->pchg[1] = pp->flg ;
 						pp->flg = 6 ;
@@ -92,7 +92,7 @@ void ActEnemy5( void )
 					{
 						pp->xspd = -4.0 ;
 					}
-					else if ( pp->ypos >= 400 )
+					else if ( pp->ypos >= 450 )
 					{
 						pp->pchg[1] = pp->flg ;
 						pp->flg = 6 ;
@@ -105,7 +105,7 @@ void ActEnemy5( void )
 					{
 						pp->xspd = 4.0 ;
 					}
-					else if ( pp->ypos >= 400 )
+					else if ( pp->ypos >= 450 )
 					{
 						pp->pchg[1] = pp->flg ;
 						pp->flg = 6 ;
@@ -116,7 +116,7 @@ void ActEnemy5( void )
 					pp->yspd = 0 ;
 					if ( pp->time < 0 )
 					{
-						for ( i = 0 ; i < 360 ; (i += 72) )
+						for ( i = 0 ; i < 360 ; (i += 36) )
 						{
 							no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
 							if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç

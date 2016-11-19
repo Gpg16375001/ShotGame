@@ -1,6 +1,6 @@
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 /*																														*/
-/*													 ENEMY7 アクション													*/
+/*													 ENEMY9 アクション													*/
 /*																														*/
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 
@@ -11,7 +11,7 @@
 #include "math.h"
 
 /*______________________________________________________*/
-/*					  ENEMY7 アクション					*/
+/*					  ENEMY9 アクション					*/
 /*￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣*/
 void ActEnemy9( void )
 {
@@ -23,7 +23,7 @@ void ActEnemy9( void )
 	{
 		case 0 :
 			/*
-				ENEMY7 初期セット
+				ENEMY9 初期セット
 			*/
 			pp->xsize = 70 ;
 			pp->ysize = 70 ;
@@ -42,23 +42,161 @@ void ActEnemy9( void )
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
 
-			if ( pp->time < 0 )
+			switch ( pp->flg )
 			{
-				for ( i = 0 ; i < 360 ; (i += 10) )
-				{
-					no = ObjSearch( O_ES , MAX_ES ) ;			// 空いている配列を見つける
-					if ( no != -1 )								// 空いていたら
+				// left
+				case 0 :
+					if ( pp->cnt != 0 )
 					{
-						obj[no].idnum = ID_E9S ;				// その配列に弾を入れる
-						obj[no].mode = 0 ;
-						obj[no].xpos = pp->xpos ;
-						obj[no].ypos = pp->ypos ;
-						obj[no].xspd = cos( 3.14 / 180 * i ) * 4.0 ;
-						obj[no].yspd = sin( 3.14 / 180 * (i * 34) ) * 1.0 ;
+						pp->yspd = 4.0 ;
+						if ( pp->ypos == (WINDOW_H - 200) )
+						{
+							pp->flg = 7 ;
+						}
 
-						pp->time = 60 ;
 					}
-				}
+					else if ( pp->xpos >= 100 )
+					{
+						pp->pchg[1] = pp->flg ;					// 戻ってくるため前に立フラグをもらう
+						pp->flg = 6 ;							// 弾を打つモードへ
+					}
+					break ;
+
+				// right
+				case 1 :
+					if ( pp->cnt != 0 )
+					{
+						pp->yspd = 4.0 ;
+					}
+					else if ( pp->xpos >= 250 )
+					{
+						pp->pchg[1] = pp->flg ;					// 戻ってくるため前に立フラグをもらう
+						pp->flg = 6 ;							// 弾を打つモードへ
+					}
+					break ;
+
+				// center
+				case 2 :
+					if ( pp->cnt != 0 )
+					{
+						pp->yspd = 4.2 ;
+					}
+					else if ( pp->xpos >= 400 )
+					{
+						pp->pchg[1] = pp->flg ;					// 戻ってくるため前に立フラグをもらう
+						pp->flg = 6 ;							// 弾を打つモードへ
+					}
+					break ;
+
+				// right
+				case 3 :
+					if ( pp->cnt != 0 )
+					{
+						pp->yspd = 4.0 ;
+					}
+					else if ( pp->xpos <= 550 )
+					{
+						pp->pchg[1] = pp->flg ;					// 戻ってくるため前に立フラグをもらう
+						pp->flg = 6 ;							// 弾を打つモードへ
+					}
+					break ;
+
+				// right
+				case 4 :
+					if ( pp->cnt != 0 )
+					{
+						pp->yspd = 4.0 ;
+					}
+					else if ( pp->xpos <= 700 )
+					{
+						pp->pchg[1] = pp->flg ;					// 戻ってくるため前に立フラグをもらう
+						pp->flg = 6 ;							// 弾を打つモードへ
+					}
+					break ;
+
+				case 6 :
+					pp->xspd = 0 ;
+					pp->yspd = 0 ;
+					if ( pp->time < 0 )
+					{
+						pp->cnt += 10 ;
+						for ( i = 0 ; i < 3 ; i++ )
+						{
+							no = ObjSearch( O_ES , MAX_ES ) ;	// 空いている配列を見つける
+							if ( no != -1 )						// 空いていたら
+							{
+								obj[no].idnum = ID_E9S ;		// その配列に弾を入れる
+								obj[no].mode = 0 ;
+								obj[no].color = pp->color ;		// 弾の色
+								obj[no].xpos = pp->xpos ;		// X軸 の発射位置をENEMYにする
+								obj[no].ypos = pp->ypos ;		// Y軸 の発射位置をENEMYにする
+								obj[no].xspd = i * 1.5 ;
+								obj[no].yspd = 8.0 - (i * 0.9) ;
+
+								pp->time = 20 ;
+							}
+
+							no = ObjSearch( O_ES , MAX_ES ) ;	// 空いている配列を見つける
+							if ( no != -1 )						// 空いていたら
+							{
+								obj[no].idnum = ID_E9S ;		// その配列に弾を入れる
+								obj[no].mode = 0 ;
+								obj[no].color = pp->color ;		// 弾の色
+								obj[no].xpos = pp->xpos ;		// X軸 の発射位置をENEMYにする
+								obj[no].ypos = pp->ypos ;		// Y軸 の発射位置をENEMYにする
+								obj[no].xspd = i * -1.5 ;
+								obj[no].yspd = 8.0 - (i * 0.9) ;
+
+								pp->time = 20 ;
+							}
+						}
+
+						if ( pp->cnt > 180 )
+						{
+							pp->flg = pp->pchg[1] ;
+						}
+
+					}
+					pp->time-- ;
+					break ;
+
+				case 7 :
+					if ( pp->time < 0 )
+					{
+						for ( i = 0 ; i < 3 ; i++ )
+						{
+							no = ObjSearch( O_ES , MAX_ES ) ;	// 空いている配列を見つける
+							if ( no != -1 )						// 空いていたら
+							{
+								obj[no].idnum = ID_E9S ;		// その配列に弾を入れる
+								obj[no].mode = 0 ;
+								obj[no].color = 2 ;				// 弾の色
+								obj[no].xpos = pp->xpos ;		// X軸 の発射位置をENEMYにする
+								obj[no].ypos = pp->ypos ;		// Y軸 の発射位置をENEMYにする
+								obj[no].xspd = i * 1.5 ;
+								obj[no].yspd = (8.0 - (i * 0.9)) * -1 ;
+
+								pp->time = 10 ;
+							}
+
+							no = ObjSearch( O_ES , MAX_ES ) ;	// 空いている配列を見つける
+							if ( no != -1 )						// 空いていたら
+							{
+								obj[no].idnum = ID_E9S ;		// その配列に弾を入れる
+								obj[no].mode = 0 ;
+								obj[no].color = 2 ;				// 弾の色
+								obj[no].xpos = pp->xpos ;		// X軸 の発射位置をENEMYにする
+								obj[no].ypos = pp->ypos ;		// Y軸 の発射位置をENEMYにする
+								obj[no].xspd = i * -1.5 ;
+								obj[no].yspd = (8.0 - (i * 0.9)) * -1 ;
+
+								pp->time = 10 ;
+							}
+						}
+
+					}
+					pp->time-- ;
+					break ;
 			}
 			pp->time-- ;
 			break ;
@@ -89,14 +227,14 @@ void ActEnemy9( void )
 			break ;
 
 	}
-	EPscheck( ) ;
-	EPcheck( ) ;
-	Fout( ) ;													//	画面外チェック
+	EPscheck( ) ;												// プレイヤーの弾に当たった時
+	EPcheck( ) ;												// 直接当たった時
+	Fout( ) ;													// 画面外チェック
 
 }
 
 /*______________________________________________________*/
-/*					  ENEMY8 弾 アクション				*/
+/*					  ENEMY9 弾 アクション				*/
 /*￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣*/
 void ActE9Shot( void )
 {
@@ -104,12 +242,12 @@ void ActE9Shot( void )
 	{
 		case 0 :
 			/*
-				ENEMY8 弾 初期セット
+				ENEMY9 弾 初期セット
 			*/
 			pp->xsize = 16 ;
 			pp->ysize = 16 ;
 			pp->xboff = 0 ;
-			pp->yboff = 0 ;
+			pp->yboff = 16 * pp->color ;
 			pp->xmoff = 64 ;
 			pp->ymoff = 0 ;
 			pp->idx = 4 ;
@@ -121,11 +259,20 @@ void ActE9Shot( void )
 		case 1 :
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
+
+			if ( pp->color == 0 )
+			{
+				pp->yspd += -0.2 ;
+			}
+			else
+			{
+				pp->yspd += 0.2 ;
+			}
 			break ;
 
 	}
 	BulletColor( ) ;											// 弾光る関数
-	Fout( ) ;													//	画面外チェック
+	Fout( ) ;													// 画面外チェック
 
 }
 

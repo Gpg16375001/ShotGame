@@ -1,6 +1,6 @@
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 /*																														*/
-/*													 ENEMY8 ƒAƒNƒVƒ‡ƒ“													*/
+/*													 ENEMY10 ƒAƒNƒVƒ‡ƒ“													*/
 /*																														*/
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 
@@ -11,19 +11,21 @@
 #include "math.h"
 
 /*______________________________________________________*/
-/*					  ENEMY8 ƒAƒNƒVƒ‡ƒ“					*/
+/*					 ENEMY10 ƒAƒNƒVƒ‡ƒ“					*/
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
-void ActEnemy8( void )
+void ActEnemy10( void )
 {
 	int no ;
-	static int num ;
 	int i ;
+	static int num ;
+	static double rol = 0.1 ;
+	static int deblt ;
 
 	switch ( pp->mode )
 	{
 		case 0 :
 			/*
-				ENEMY8 ‰ŠúƒZƒbƒg
+				ENEMY10 ‰ŠúƒZƒbƒg
 			*/
 			pp->xsize = 70 ;
 			pp->ysize = 70 ;
@@ -35,36 +37,68 @@ void ActEnemy8( void )
 			pp->yoff = -35 ;									// ’†S“_‚Ì•ÏX Y²
 			pp->idx = 2 ;
 			pp->mode = 1 ;										// mode1 ‚ÉˆÚ‚é
+
+			pp->flg = 0 ;
+			pp->yspd = 8.0 ;
 			pp->time = 10 ;
+			pp->color = 0 ;
+			pp->cnt = 0 ;
+			deblt = 0 ;
 			break ;
 
 		case 1 :
-			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
 
-			if ( pp->time < 0 )
+			switch ( pp->flg )
 			{
-				for ( i = 0 ; i < 360 ; (i += 10) )
-				{
-					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ğŒ©‚Â‚¯‚é
-					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
+				// left
+				case 0 :
+					if ( pp->cnt != 0 )
 					{
-						obj[no].idnum = ID_E8S ;				// ‚»‚Ì”z—ñ‚É’e‚ğ“ü‚ê‚é
-						obj[no].mode = 0 ;
-						obj[no].xpos = pp->xpos ;
-						obj[no].ypos = pp->ypos ;
-						obj[no].xspd = cos( 3.14 / 180 * i ) * 4.0 ;
-						obj[no].yspd = sin( 3.14 / 180 * (i * 34) ) * 1.0 ;
-
-						pp->time = 60 ;
-						if ( pp->flg > 4 )
-						{
-							pp->flg = 0 ;
-						}
+						// up‚É“¦‚°‚é
+						pp->yspd = -4.0 ;
 					}
-				}
+					else if ( pp->ypos >= 300 )
+					{
+						pp->pchg[1] = pp->flg ;
+						pp->flg = 6 ;
+					}
+					break ;
+
+				case 6 :
+					pp->yspd = 0 ;
+					if ( pp->time < 0 )
+					{
+						pp->cnt += 1 ;
+						for ( i = 120 ; i < 470 ; (i += 5) )
+						{
+							no = ObjSearch( O_ES , MAX_ES ) ;	// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ğŒ©‚Â‚¯‚é
+							if ( no != -1 )						// ‹ó‚¢‚Ä‚¢‚½‚ç
+							{
+								obj[no].idnum = ID_E10S ;		// ‚»‚Ì”z—ñ‚É’e‚ğ“ü‚ê‚é
+								obj[no].mode = 0 ;
+								obj[no].color = pp->color ;
+								obj[no].xpos = pp->xpos ;
+								obj[no].ypos = pp->ypos ;
+								obj[no].xspd = cos( 3.14 / 180 * (i + deblt) ) * 8.0 ;
+								obj[no].yspd = sin( 3.14 / 180 * (i + deblt) ) * 8.0 ;
+
+								pp->time = 4 ;
+
+							}
+
+							if ( pp->cnt > 100 )
+							{
+								pp->flg = pp->pchg[1] ;
+							}
+
+						}
+						deblt += 2 ;
+					}
+					pp->time-- ;
+					break ;
+
 			}
-			pp->time-- ;
 			Enemy1Roll( ) ;
 			break ;
 
@@ -80,6 +114,7 @@ void ActEnemy8( void )
 				pp->time = 6 ;
 				pp->mode = 99 ;
 			}
+			pscore += 100 ;
 			break ;
 
 		case 99 :
@@ -101,26 +136,27 @@ void ActEnemy8( void )
 }
 
 /*______________________________________________________*/
-/*					  ENEMY8 ’e ƒAƒNƒVƒ‡ƒ“				*/
+/*					  ENEMY10 ’e ƒAƒNƒVƒ‡ƒ“				*/
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
-void ActE8Shot( void )
+void ActE10Shot( void )
 {
 	switch ( pp->mode )
 	{
 		case 0 :
 			/*
-				ENEMY8 ’e ‰ŠúƒZƒbƒg
+				ENEMY10 ’e ‰ŠúƒZƒbƒg
 			*/
 			pp->xsize = 16 ;
 			pp->ysize = 16 ;
 			pp->xboff = 0 ;
-			pp->yboff = 32 ;
+			pp->yboff = 16 * pp->color ;
 			pp->xmoff = 64 ;
 			pp->ymoff = 0 ;
 			pp->idx = 4 ;
 			pp->mode = 1 ;
 			pp->xoff = -8 ;										// ’†S“_‚Ì•ÏX X²
 			pp->yoff = -8 ;										// ’†S“_‚Ì•ÏX Y²
+			mciSendString( TEXT("play SE_ES2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 			break ;
 
 		case 1 :

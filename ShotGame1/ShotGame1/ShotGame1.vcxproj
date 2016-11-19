@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ActBoss.cpp" />
+    <ClCompile Include="ActEnemy10.cpp" />
     <ClCompile Include="ActEnemy3.cpp" />
     <ClCompile Include="ActEnemy4.cpp" />
     <ClCompile Include="ActEnemy5.cpp" />

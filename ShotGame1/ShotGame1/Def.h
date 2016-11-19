@@ -9,7 +9,7 @@
 /* ____ DEFINE ____ */
 #define WINDOW_W	800					// ウィンドウの横幅
 #define WINDOW_H	700					// ウィンドウの縦幅
-#define MAXOBJ		2000				// 最大描画数
+#define MAXOBJ		5000				// 最大描画数
 
 #define ID_BG		1					// 背景のID
 #define ID_PLY		4					// プレイヤーのID
@@ -22,16 +22,16 @@
 #define O_BG		1
 #define O_PS		10					// 10 - 89 (80)
 #define O_PLY		100					// 100 - 109
-#define O_ES		200					// 200 - 1799
-#define O_ENE		1800				// 1800 - 1849
-#define O_BOMB		1850				// 1850 - 1899
+#define O_ES		200					// 200 - 4799
+#define O_ENE		4800				// 4800 - 1849
+#define O_BOMB		4850				// 1850 - 1899
 
-#define O_SCORE		1900
-#define O_LIFE		1910
-#define O_LBASE		1911
+#define O_SCORE		4900
+#define O_LIFE		4910
+#define O_LBASE		4911
 
 #define MAX_PS		80					// 80		プレイヤーの弾描画の最大数
-#define MAX_ES		1600				// 1600		エネミーの弾描画の最大数
+#define MAX_ES		4600				// 4600		エネミーの弾描画の最大数
 #define MAX_ENE		50					// 50		エネミー描画の最大数
 #define MAX_BM		50					// 50		爆発描画の最大数
 
@@ -60,6 +60,8 @@
 #define ID_E8S		27
 #define ID_ENE9		28
 #define ID_E9S		29
+#define ID_ENE10	30
+#define ID_E10S		31
 
 #define ID_ESET1	40
 #define ID_ESET2	41
@@ -140,5 +142,7 @@ void ActE8Shot( void ) ;
 void ActEnemySet1( void ) ;
 void ActEnemy9( void ) ;
 void ActE9Shot( void ) ;
-
+void ActEnemy10( void ) ;
+void ActE10Shot( void ) ;
+void PlayerMove( void ) ;
 

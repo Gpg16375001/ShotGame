@@ -35,10 +35,17 @@ void ActPlayer( void )
 			pp->idx = 1 ;
 			pp->mode = 1 ;
 
+			pp->cnt = 0 ;
 			pp->yspd = -4.0 ;
 			break ;
 
 		case 1 :
+			if ( pp->cnt > 40 )
+			{
+				mciSendString( TEXT("play SE_SP3 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+				mciSendString( TEXT("play SE_ST from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+				pp->cnt = 0 ;
+			}
 			pp->ypos += pp->yspd ;
 			if ( pp->ypos < 550.0 )
 			{
@@ -52,18 +59,38 @@ void ActPlayer( void )
 
 			if ( GetKeyState(VK_UP) < 0 )
 			{
+				if ( pp->cnt > 10 )
+				{
+					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+					pp->cnt = 0 ;
+				}
 				pp->yspd = -PSPD ;
 			}
 			if ( GetKeyState(VK_DOWN) < 0 )
 			{
+				if ( pp->cnt > 10 )
+				{
+					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+					pp->cnt = 0 ;
+				}
 				pp->yspd = PSPD ;
 			}
 			if ( GetKeyState(VK_LEFT) < 0 )
 			{
+				if ( pp->cnt > 10 )
+				{
+					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+					pp->cnt = 0 ;
+				}
 				pp->xspd = -PSPD ;
 			}
 			if ( GetKeyState(VK_RIGHT) < 0 )
 			{
+				if ( pp->cnt > 10 )
+				{
+					mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+					pp->cnt = 0 ;
+				}
 				pp->xspd = PSPD ;
 			}
 
@@ -90,6 +117,8 @@ void ActPlayer( void )
 			break ;
 
 	}
+	pp->cnt++ ;
+	PlayerMove( ) ;
 	PEscheck( ) ;
 
 }
@@ -128,6 +157,49 @@ void ActPshot( void )
 	}
 	Fout( ) ;					//	‰æ–ÊŠOƒ`ƒFƒbƒN
 
+}
+
+/*______________________________________________________*/
+/*				 ƒvƒŒƒCƒ„[‚ÌƒAƒjƒ[ƒVƒ‡ƒ“				*/
+/*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
+void PlayerMove( void )
+{
+	switch ( pp->mode )
+	{
+		case 0 :
+			/*
+				PLAYER ‰ŠúƒZƒbƒg
+			*/
+			pp->xsize = 60 ;
+			pp->ysize = 60 ;
+			pp->xboff = 60 ;
+			pp->yboff = 0 ;
+			pp->xmoff = 60 ;
+			pp->ymoff = 60 ;
+			pp->xoff = -30 ;									// ’†S“_‚Ì•ÏX XŽ²
+			pp->yoff = -40 ;									// ’†S“_‚Ì•ÏX YŽ²
+			pp->idx = 1 ;
+			pp->mode = 1 ;
+
+			pp->pchg[0] = 0 ;
+			break ;
+
+		case 1 :
+		case 2 :
+			if ( pp->pchg[0] < 3 )
+			{
+				pp->xboff = pp->pchg[0] * 60 ;
+				pp->xmoff = pp->pchg[0] * 60 ;
+			}
+			pp->pchg[0]++ ;
+
+			if ( pp->pchg[0] >= 3 )
+			{
+				pp->pchg[0] = 0 ;
+			}
+			break ;
+
+	}
 }
 
 

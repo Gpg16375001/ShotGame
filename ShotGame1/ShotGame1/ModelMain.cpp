@@ -123,13 +123,18 @@ LRESULT CALLBACK WndProc (
 
 			// Sound Set
 			mciSendString( TEXT("close all") , NULL , 0 , hWnd ) ;	// 00
-			mciSendString( TEXT("open sound/shot1.wav alias SE_PS type waveaudio") , NULL , 0 , hWnd ) ;// PlayerÇÃíe
-			mciSendString( TEXT("open sound/shot2.wav alias SE_ES1 type waveaudio") , NULL , 0 , hWnd ) ;// ENEMY ÇÃíe
-			mciSendString( TEXT("open sound/shot3.wav alias SE_ES2 type waveaudio") , NULL , 0 , hWnd ) ;// ENEMY ÇÃíe
-			mciSendString( TEXT("open sound/shot4.wav alias SE_ES3 type waveaudio") , NULL , 0 , hWnd ) ;// ENEMY ÇÃíe
+			mciSendString( TEXT("open sound/start.wav alias SE_ST type waveaudio") , NULL , 0 , hWnd ) ;	// PlayerÇÃíe
+			mciSendString( TEXT("open sound/shot1.wav alias SE_PS type waveaudio") , NULL , 0 , hWnd ) ;	// PlayerÇÃíe
+			mciSendString( TEXT("open sound/shot2.wav alias SE_ES1 type waveaudio") , NULL , 0 , hWnd ) ;	// ENEMY ÇÃíe
+			mciSendString( TEXT("open sound/shot3.wav alias SE_ES2 type waveaudio") , NULL , 0 , hWnd ) ;	// ENEMY ÇÃíe
+			mciSendString( TEXT("open sound/shot4.wav alias SE_ES3 type waveaudio") , NULL , 0 , hWnd ) ;	// ENEMY ÇÃíe
 			mciSendString( TEXT("open sound/hitplayer.wav alias SE_PHIT type waveaudio") , NULL , 0 , hWnd ) ;// player hit
-			mciSendString( TEXT("open sound/bomb1.wav alias SE_BOMB1 type waveaudio") , NULL , 0 , hWnd ) ;// bomb1
-			mciSendString( TEXT("open sound/bomb2.wav alias SE_BOMB2 type waveaudio") , NULL , 0 , hWnd ) ;// bomb2
+			mciSendString( TEXT("open sound/bomb1.wav alias SE_BOMB1 type waveaudio") , NULL , 0 , hWnd ) ;	// bomb1
+			mciSendString( TEXT("open sound/bomb2.wav alias SE_BOMB2 type waveaudio") , NULL , 0 , hWnd ) ;	// bomb2
+			mciSendString( TEXT("open sound/splayer.wav alias SE_SP type waveaudio") , NULL , 0 , hWnd ) ;	// PLAYER î≠êi
+			mciSendString( TEXT("open sound/splayer2.wav alias SE_SP1 type waveaudio") , NULL , 0 , hWnd ) ;// PLAYER î≠êi
+			mciSendString( TEXT("open sound/splayer3.wav alias SE_SP2 type waveaudio") , NULL , 0 , hWnd ) ;// PLAYER î≠êi
+			mciSendString( TEXT("open sound/splayer4.wav alias SE_SP3 type waveaudio") , NULL , 0 , hWnd ) ;// PLAYER î≠êi
 
 			SetTimer( hWnd , 1 , 50 , NULL ) ;
 			break ;
