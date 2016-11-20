@@ -130,7 +130,7 @@ void ActEnemy14( void )
 						pp->time = 10 ;
 					}
 
-					if ( pp->cnt > 150 )
+					if ( pp->cnt > 29 )
 					{
 						pp->mode = 3 ;
 					}
@@ -156,6 +156,7 @@ void ActEnemy14( void )
 				pp->time = 6 ;
 				pp->mode = 99 ;
 			}
+			pscore += 100 ;
 			break ;
 
 		case 99 :

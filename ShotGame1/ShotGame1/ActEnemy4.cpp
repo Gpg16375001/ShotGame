@@ -8,14 +8,17 @@
 #include <windows.h>
 #include "Def.h"
 #include "Work.h"
+#include "math.h"
 
 /*______________________________________________________*/
 /*					  ENEMY4 ƒAƒNƒVƒ‡ƒ“					*/
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
 void ActEnemy4( void )
 {
+	int i ;
 	int no ;
 	static int num ;
+	static int dere ;
 
 	switch ( pp->mode )
 	{
@@ -39,9 +42,52 @@ void ActEnemy4( void )
 			pp->xpos += pp->xspd ;
 			pp->yspd += 0.5 ;
 			pp->ypos += pp->yspd ;
+
+			if ( (pp->xpos >= WINDOW_W) || (pp->xpos <= 0) )
+			{
+				pp->xspd *= -1 ;
+				pp->yspd *= -1 ;
+			}
+			if ( pp->ypos <= 200 )
+			{
+				pp->mode = 2 ;
+			}
 			break ;
 
 		case 2 :
+			if ( pp->time < 0 )
+			{
+				mciSendString( TEXT("play SE_ES1 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+				pp->cnt += 1 ;
+				for ( i = 0 ; i < 360 ; (i += 36) )
+				{
+					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
+					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
+					{
+						obj[no].idnum = ID_E4S ;				// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
+						obj[no].mode = 0 ;
+						obj[no].color = 4 ;
+						obj[no].xpos = pp->xpos ;
+						obj[no].ypos = pp->ypos ;
+						obj[no].xspd = cos( 3.14 / 180 * (i + dere) ) * 4.0 ;
+						obj[no].yspd = sin( 3.14 / 180 * (i + dere) ) * 4.0 ;
+					}
+				}
+				dere += 6 ;								// ‰E‰ñ‚è
+
+			}
+			pp->mode = 1 ;
+			if ( pp->cnt > 120 )
+			{
+				pp->mode = 3 ;
+			}
+			pp->time-- ;
+			break ;
+
+		case 3 :
+			pp->xpos += pp->xspd ;
+			pp->yspd += 0.5 ;
+			pp->ypos += pp->yspd ;
 			break ;
 
 		case 98 :
@@ -56,6 +102,7 @@ void ActEnemy4( void )
 				pp->time = 6 ;
 				pp->mode = 99 ;
 			}
+			pscore += 100 ;
 			break ;
 
 		case 99 :
@@ -70,6 +117,7 @@ void ActEnemy4( void )
 			break ;
 
 	}
+	Enemy1Roll( ) ;
 	EPscheck( ) ;
 	EPcheck( ) ;
 	Fout( ) ;					//	‰æ–ÊŠOƒ`ƒFƒbƒN
@@ -103,13 +151,6 @@ void ActE4Shot( void )
 		case 1 :
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
-
-			if ( pp->cnt > 20 )
-			{
-				pp->mode = 0 ;
-				pp->idnum = 0 ;
-			}
-			pp->cnt++ ;
 			break ;
 
 	}
