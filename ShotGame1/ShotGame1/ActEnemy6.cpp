@@ -42,15 +42,16 @@ void ActEnemy6( void )
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
 
-			if ( pp->ypos > 200 )
+			if ( pp->ypos > 400 )
 			{
 				pp->xspd = 0 ;
-				pp->yspd = 0 ;
+				pp->yspd = -1 ;
 				pp->mode = 2 ;
 			}
 			break ;
 
 		case 2 :
+			pp->ypos += pp->yspd ;
 			if ( pp->time < 0 )
 			{
 				mciSendString( TEXT("play SE_ES3 from 0 notify") , NULL , 0 , hwnd ) ;	// ES3
@@ -113,6 +114,7 @@ void ActEnemy6( void )
 void ActE6Shot( void )
 {
 	double x , y , z , c , pi ;
+
 	switch ( pp->mode )
 	{
 		case 0 :
@@ -132,6 +134,7 @@ void ActE6Shot( void )
 			pp->cnt = 0 ;
 			pp->xpos += pp->xm ;
 			pp->ypos += pp->ym ;
+			pp->pchg[1] = 0 ;
 			break ;
 
 		case 1 :
@@ -193,23 +196,23 @@ void ActE6Shot( void )
 			{
 				pi = PI ;
 				x = obj[O_PLY].xpos - pp->xpos ;
-				y = obj[O_PLY].ypos - pp->ypos ;
+				y = (obj[O_PLY].ypos - 5) - pp->ypos ;
 				z = atan2( y , x ) ;
 				c = z / ( pi/180 ) ;
 				pp->xspd = cos( c * (pi / 180) ) * 8.0 ;
 				pp->yspd = sin( c * (pi / 180) ) * 8.0 ; 
-
-				pp->yspd += 12.0 ;
+				pp->yspd += pp->pch[1] ;
 
 				pp->xpos += pp->xspd ;
 				pp->ypos += pp->yspd ;
+				pp->pch[1] += 0.1 ;
 			}
 			pp->cnt++ ;
 			break ;
 
 	}
 	BulletColor( ) ;									// 弾光る関数
-	Fout( ) ;					//	画面外チェック
+	Fout( ) ;											//	画面外チェック
 
 }
 

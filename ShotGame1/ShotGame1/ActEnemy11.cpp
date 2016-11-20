@@ -1,6 +1,6 @@
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 /*																														*/
-/*													 ENEMY10 ƒAƒNƒVƒ‡ƒ“													*/
+/*													ENEMY11 ƒAƒNƒVƒ‡ƒ“													*/
 /*																														*/
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 
@@ -11,95 +11,99 @@
 #include "math.h"
 
 /*______________________________________________________*/
-/*					 ENEMY10 ƒAƒNƒVƒ‡ƒ“					*/
+/*					 ENEMY11 ƒAƒNƒVƒ‡ƒ“					*/
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
-void ActEnemy10( void )
+void ActEnemy11( void )
 {
 	int no ;
-	int i ;
 	static int num ;
-	static int deblt ;
+	static int dere[2] ;
+	int i ;
 
 	switch ( pp->mode )
 	{
 		case 0 :
 			/*
-				ENEMY10 ‰ŠúƒZƒbƒg
+				ENEMY11 ‰ŠúƒZƒbƒg
 			*/
 			pp->xsize = 70 ;
 			pp->ysize = 70 ;
 			pp->xboff = 0 ;
-			pp->yboff = 0 ;
+			pp->yboff = 70 ;
 			pp->xmoff = 0 ;
-			pp->ymoff = 140 ;
+			pp->ymoff = 210 ;
 			pp->xoff = -35 ;									// ’†S“_‚Ì•ÏX XŽ²
 			pp->yoff = -35 ;									// ’†S“_‚Ì•ÏX YŽ²
 			pp->idx = 2 ;
 			pp->mode = 1 ;										// mode1 ‚ÉˆÚ‚é
-
-			pp->flg = 0 ;
-			pp->yspd = 8.0 ;
 			pp->time = 10 ;
-			pp->color = 0 ;
-			pp->cnt = 0 ;
-			deblt = 0 ;
 			break ;
 
 		case 1 :
+			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
 
-			switch ( pp->flg )
+			if ( pp-> ypos >= 70 )
 			{
-				// left
-				case 0 :
-					if ( pp->cnt != 0 )
-					{
-						// up‚É“¦‚°‚é
-						pp->yspd = -4.0 ;
-					}
-					else if ( pp->ypos >= 300 )
-					{
-						pp->pchg[1] = pp->flg ;
-						pp->flg = 6 ;
-					}
-					break ;
-
-				case 6 :
-					pp->yspd = 0 ;
-					if ( pp->time < 0 )
-					{
-						mciSendString( TEXT("play SE_ES1 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
-						pp->cnt += 1 ;
-						for ( i = 120 ; i < 460 ; (i += 5) )
-						{
-							no = ObjSearch( O_ES , MAX_ES ) ;	// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
-							if ( no != -1 )						// ‹ó‚¢‚Ä‚¢‚½‚ç
-							{
-								obj[no].idnum = ID_E10S ;		// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
-								obj[no].mode = 0 ;
-								obj[no].color = pp->color ;
-								obj[no].xpos = pp->xpos ;
-								obj[no].ypos = pp->ypos ;
-								obj[no].xspd = cos( 3.14 / 180 * (i + deblt) ) * 8.0 ;
-								obj[no].yspd = sin( 3.14 / 180 * (i + deblt) ) * 8.0 ;
-
-								pp->time = 2 ;
-
-							}
-
-							if ( pp->cnt > 90 )
-							{
-								pp->flg = pp->pchg[1] ;
-							}
-
-						}
-						deblt += 4 ;
-					}
-					pp->time-- ;
-					break ;
-
+				pp->mode = 2 ;
 			}
-			Enemy1Roll( ) ;
+			break ;
+
+		case 2 :
+			if ( pp->time < 0 )
+			{
+				mciSendString( TEXT("play SE_ES2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+				pp->cnt += 1 ;
+				for ( i = 60 ; i < 70 ; (i += 10) )
+				{
+					no = ObjSearch( O_ES , MAX_ES ) ;	// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
+					if ( no != -1 )						// ‹ó‚¢‚Ä‚¢‚½‚ç
+					{
+						obj[no].idnum = ID_E10S ;		// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
+						obj[no].mode = 0 ;
+						obj[no].color = pp->color ;
+						obj[no].xpos = pp->xpos ;
+						obj[no].ypos = pp->ypos ;
+						obj[no].xspd = cos( 3.14 / 180 * (i + dere[0]) ) * 8.0 ;
+						obj[no].yspd = sin( 3.14 / 180 * (i + dere[0]) ) * 8.0 ;
+
+						pp->time = 1 ;
+
+					}
+
+					if ( pp->cnt > 120 )
+					{
+						pp->mode = 3 ;
+					}
+
+				}
+
+				if ( dere[0] >= 60 )
+				{
+					dere[1] = 1 ;
+				}
+				else if ( dere[0] <= 0 )
+				{
+					dere[1] = 0 ;
+				}
+
+				if ( dere[1] != 1 )
+				{
+					dere[0] += 4 ;
+				}
+				else
+				{
+					dere[0] -= 4 ;
+				}
+			}
+
+			pp->time-- ;
+			break ;
+
+		case 3 :
+			pp->xpos += pp->xspd ;
+			pp->ypos += pp->yspd ;
+
 			break ;
 
 		case 98 :
@@ -114,7 +118,6 @@ void ActEnemy10( void )
 				pp->time = 6 ;
 				pp->mode = 99 ;
 			}
-			pscore += 100 ;
 			break ;
 
 		case 99 :
@@ -136,15 +139,15 @@ void ActEnemy10( void )
 }
 
 /*______________________________________________________*/
-/*					  ENEMY10 ’e ƒAƒNƒVƒ‡ƒ“				*/
+/*					 ENEMY11 ’e ƒAƒNƒVƒ‡ƒ“				*/
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
-void ActE10Shot( void )
+void ActE11Shot( void )
 {
 	switch ( pp->mode )
 	{
 		case 0 :
 			/*
-				ENEMY10 ’e ‰ŠúƒZƒbƒg
+				ENEMY11 ’e ‰ŠúƒZƒbƒg
 			*/
 			pp->xsize = 16 ;
 			pp->ysize = 16 ;

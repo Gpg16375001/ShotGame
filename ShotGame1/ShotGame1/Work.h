@@ -17,7 +17,6 @@ extern int etim ;
 extern int ecnt ;
 extern int pscore ;																// player score
 extern int plife ;																// player life
-extern int ecount ;																// エネミーセットのエネミーの数
-extern int ecount2 ;															// エネミーセットのエネミーの数
+extern int ecount[5] ;																// エネミーセットのエネミーの数
 
 

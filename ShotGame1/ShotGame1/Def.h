@@ -62,6 +62,8 @@
 #define ID_E9S		29
 #define ID_ENE10	30
 #define ID_E10S		31
+#define ID_ENE11	32
+#define ID_E11S		33
 
 #define ID_ESET1	40
 #define ID_ESET2	41
@@ -92,6 +94,7 @@ typedef struct {
 	double yspd ;						// Y軸 のスピード
 	double xm ;							// 仮想の X軸
 	double ym ;							// 仮想の Y軸
+	double pch[2] ;						// 好きなものに使える
 	int pchg[2] ;						// 好きなものに使える
 	int time ;							// タイムカウント	敵の行動変更など
 	int cnt ;							// カウント
@@ -146,5 +149,8 @@ void ActEnemy10( void ) ;
 void ActE10Shot( void ) ;
 void PlayerMove( void ) ;
 void ActEnemySet2( void ) ;
+void ActEnemySet3( void ) ;
+void ActEnemy11( void ) ;
+void ActE11Shot( void ) ;
 
 

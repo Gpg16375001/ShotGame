@@ -42,15 +42,18 @@ void ActEnemy7( void )
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
 
-			if ( pp->ypos > 200 )
+			pp->yspd += 0.5 ;
+
+			if ( pp->ypos < 300 )
 			{
-				pp->xspd = 0 ;
-				pp->yspd = 0 ;
 				pp->mode = 2 ;
 			}
 			break ;
 
 		case 2 :
+			pp->xpos += pp->xspd ;
+			pp->ypos += pp->yspd ;
+
 			if ( pp->time < 0 )
 			{
 				mciSendString( TEXT("play SE_ES1 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
@@ -61,6 +64,7 @@ void ActEnemy7( void )
 					{
 						obj[no].idnum = ID_E7S ;				// その配列に弾を入れる
 						obj[no].mode = 0 ;
+						obj[no].color = pp->color ;
 						obj[no].xpos = pp->xpos ;
 						obj[no].ypos = pp->ypos ;
 						switch ( pp->flg )
@@ -77,7 +81,7 @@ void ActEnemy7( void )
 
 						}
 						pp->flg++ ;
-						pp->time = 60 ;
+						pp->time = 10 ;
 						if ( pp->flg > 1 )
 						{
 							pp->flg = 0 ;
@@ -85,8 +89,8 @@ void ActEnemy7( void )
 					}
 				}
 			}
+			pp->mode = 1 ;
 			pp->time-- ;
-			Enemy1Roll( ) ;
 			break ;
 
 		case 98 :
@@ -115,6 +119,7 @@ void ActEnemy7( void )
 			break ;
 
 	}
+	Enemy1Roll( ) ;
 	EPscheck( ) ;
 	EPcheck( ) ;
 	Fout( ) ;													//	画面外チェック
@@ -135,7 +140,7 @@ void ActE7Shot( void )
 			pp->xsize = 16 ;
 			pp->ysize = 16 ;
 			pp->xboff = 0 ;
-			pp->yboff = 32 ;
+			pp->yboff = 16 * pp->color ;
 			pp->xmoff = 64 ;
 			pp->ymoff = 0 ;
 			pp->idx = 4 ;

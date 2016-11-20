@@ -15,8 +15,6 @@
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
 void ActEnemy2( void )
 {
-	int no ;
-
 	switch ( pp->mode )
 	{
 		case 0 :

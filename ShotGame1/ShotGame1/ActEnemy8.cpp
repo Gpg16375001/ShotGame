@@ -44,25 +44,39 @@ void ActEnemy8( void )
 
 			if ( pp->time < 0 )
 			{
-				for ( i = 0 ; i < 360 ; (i += 10) )
+				for ( i = 0 ; i < 360 ; (i += 20) )
 				{
 					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
 					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
 					{
 						obj[no].idnum = ID_E8S ;				// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
 						obj[no].mode = 0 ;
+						obj[no].color = pp->color ;
 						obj[no].xpos = pp->xpos ;
 						obj[no].ypos = pp->ypos ;
-						obj[no].xspd = cos( 3.14 / 180 * i ) * 4.0 ;
-						obj[no].yspd = sin( 3.14 / 180 * (i * 34) ) * 1.0 ;
+						obj[no].xspd = cos( 3.14 / 180 * i ) * 12.0 ;
+						obj[no].yspd = sin( 3.14 / 180 * (i * 34) ) * 3.0 ;
 
-						pp->time = 60 ;
-						if ( pp->flg > 4 )
-						{
-							pp->flg = 0 ;
-						}
+						pp->time = 20 ;
 					}
 				}
+				for ( i = 0 ; i < 360 ; (i += 20) )
+				{
+					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
+					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
+					{
+						obj[no].idnum = ID_E8S ;				// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
+						obj[no].mode = 0 ;
+						obj[no].color = pp->color ;
+						obj[no].xpos = pp->xpos ;
+						obj[no].ypos = pp->ypos ;
+						obj[no].xspd = cos( 3.14 / 180 * i ) * 3.0 ;
+						obj[no].yspd = sin( 3.14 / 180 * (i * 34) ) * 12.0 ;
+
+						pp->time = 30 ;
+					}
+				}
+
 			}
 			pp->time-- ;
 			Enemy1Roll( ) ;
@@ -114,7 +128,7 @@ void ActE8Shot( void )
 			pp->xsize = 16 ;
 			pp->ysize = 16 ;
 			pp->xboff = 0 ;
-			pp->yboff = 32 ;
+			pp->yboff = 16 * pp->color ;
 			pp->xmoff = 64 ;
 			pp->ymoff = 0 ;
 			pp->idx = 4 ;

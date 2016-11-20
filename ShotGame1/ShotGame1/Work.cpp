@@ -20,7 +20,6 @@ int etim ;																// エネミーが出てくるときのカウント数
 int ecnt ;
 int pscore ;															// score
 int plife ;																// player life
-int ecount ;															// エネミーセットのエネミーの数
-int ecount2 ;															// エネミーセットのエネミーの数
+int ecount[5] ;															// エネミーセットのエネミーの数
 
 

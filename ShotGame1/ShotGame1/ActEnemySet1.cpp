@@ -34,21 +34,21 @@ void ActEnemySet1( void )
 {
 	int no ;
 
-	if ( EneSet1[ecount][0] != -1 )
+	if ( EneSet1[ecount[0]][0] != -1 )
 	{
 		no = ObjSearch( O_ENE , MAX_ENE ) ;
 		if ( no != -1 )
 		{
-			obj[no].idnum = EneSet1[ecount][1] ;
+			obj[no].idnum = EneSet1[ecount[0]][1] ;
 			obj[no].mode = 0 ;
-			obj[no].xpos = (double)EneSet1[ecount][2] ;
-			obj[no].ypos = (double)EneSet1[ecount][3] ;
-			obj[no].xspd = (double)EneSet1[ecount][4] ;
-			obj[no].yspd = (double)EneSet1[ecount][5] ;
-			obj[no].flg = EneSet1[ecount][6] ;
-			obj[no].color = EneSet1[ecount][7] ;
+			obj[no].xpos = (double)EneSet1[ecount[0]][2] ;
+			obj[no].ypos = (double)EneSet1[ecount[0]][3] ;
+			obj[no].xspd = (double)EneSet1[ecount[0]][4] ;
+			obj[no].yspd = (double)EneSet1[ecount[0]][5] ;
+			obj[no].flg = EneSet1[ecount[0]][6] ;
+			obj[no].color = EneSet1[ecount[0]][7] ;
 		}
-		ecount++ ;
+		ecount[0]++ ;
 	}
 
 }
