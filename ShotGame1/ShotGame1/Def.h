@@ -45,11 +45,12 @@
 #define ID_E2S		13
 #define ID_ENE3		17
 #define ID_E3S		18
-#define ID_ENE4		19
 // --------------------
 
 #define ID_BOSS		16
 
+#define ID_ENE4		18
+#define ID_E4S		19
 #define ID_ENE5		20
 #define ID_E5S		21
 #define ID_ENE6		22
@@ -167,5 +168,5 @@ void ActEnemy13( void ) ;
 void ActE13Shot( void ) ;
 void ActEnemy14( void ) ;
 void ActE14Shot( void ) ;
-
+void ActE4Shot( void ) ;
 

@@ -74,6 +74,62 @@ void ActEnemy14( void )
 						pp->time = 10 ;
 					}
 
+					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
+					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
+					{
+						obj[no].idnum = ID_E14S ;				// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
+						obj[no].mode = 0 ;
+						obj[no].color = 2 ;
+						obj[no].xpos = pp->xpos ;
+						obj[no].ypos = pp->ypos ;
+						obj[no].xspd = cos( 3.14 / 180 * (i + 60) ) * 2.2 ;
+						obj[no].yspd = sin( 3.14 / 180 * (i + 60) ) * 2.2 ;
+
+						pp->time = 10 ;
+					}
+
+					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
+					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
+					{
+						obj[no].idnum = ID_E14S ;				// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
+						obj[no].mode = 0 ;
+						obj[no].color = 2 ;
+						obj[no].xpos = pp->xpos ;
+						obj[no].ypos = pp->ypos ;
+						obj[no].xspd = cos( 3.14 / 180 * (i - 60) ) * 2.2 ;
+						obj[no].yspd = sin( 3.14 / 180 * (i - 60) ) * 2.2 ;
+
+						pp->time = 10 ;
+					}
+
+					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
+					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
+					{
+						obj[no].idnum = ID_E14S ;				// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
+						obj[no].mode = 0 ;
+						obj[no].color = 2 ;
+						obj[no].xpos = pp->xpos ;
+						obj[no].ypos = pp->ypos ;
+						obj[no].xspd = cos( 3.14 / 180 * (i + 120) ) * 1.5 ;
+						obj[no].yspd = sin( 3.14 / 180 * (i + 120) ) * 1.5 ;
+
+						pp->time = 10 ;
+					}
+
+					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
+					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
+					{
+						obj[no].idnum = ID_E14S ;				// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
+						obj[no].mode = 0 ;
+						obj[no].color = 2 ;
+						obj[no].xpos = pp->xpos ;
+						obj[no].ypos = pp->ypos ;
+						obj[no].xspd = cos( 3.14 / 180 * (i - 120) ) * 1.5 ;
+						obj[no].yspd = sin( 3.14 / 180 * (i - 120) ) * 1.5 ;
+
+						pp->time = 10 ;
+					}
+
 					if ( pp->cnt > 150 )
 					{
 						pp->mode = 3 ;

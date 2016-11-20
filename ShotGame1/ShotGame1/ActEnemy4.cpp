@@ -21,7 +21,7 @@ void ActEnemy4( void )
 	{
 		case 0 :
 			/*
-				ENEMY1 初期セット
+				ENEMY4 初期セット
 			*/
 			pp->xsize = 70 ;
 			pp->ysize = 70 ;
@@ -33,18 +33,11 @@ void ActEnemy4( void )
 			pp->yoff = -35 ;									// 中心点の変更 Y軸
 			pp->idx = 2 ;
 			pp->mode = 1 ;										// mode1 に移る
-
-			pp->yspd = 20.0 ;									// Y軸のスピード
-			pp->xspd = 2.0 ;									// X軸のスピード
 			break ;
 
 		case 1 :
-			if ( pp->flg == 1 )
-			{
-				pp->xspd = -2.0 ;
-			}
 			pp->xpos += pp->xspd ;
-			pp->yspd += -0.5 ;
+			pp->yspd += 0.5 ;
 			pp->ypos += pp->yspd ;
 			break ;
 
@@ -77,10 +70,51 @@ void ActEnemy4( void )
 			break ;
 
 	}
-
 	EPscheck( ) ;
 	EPcheck( ) ;
 	Fout( ) ;					//	画面外チェック
+
+}
+
+/*______________________________________________________*/
+/*					 ENEMY4 弾 アクション				*/
+/*￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣*/
+void ActE4Shot( void )
+{
+	switch ( pp->mode )
+	{
+		case 0 :
+			/*
+				ENEMY4 弾 初期セット
+			*/
+			pp->xsize = 16 ;
+			pp->ysize = 16 ;
+			pp->xboff = 0 ;
+			pp->yboff = 16 * pp->color ;
+			pp->xmoff = 64 ;
+			pp->ymoff = 0 ;
+			pp->idx = 4 ;
+			pp->mode = 1 ;
+			pp->xoff = -8 ;										// 中心点の変更 X軸
+			pp->yoff = -8 ;										// 中心点の変更 Y軸
+			pp->cnt = 0 ;
+			break ;
+
+		case 1 :
+			pp->xpos += pp->xspd ;
+			pp->ypos += pp->yspd ;
+
+			if ( pp->cnt > 20 )
+			{
+				pp->mode = 0 ;
+				pp->idnum = 0 ;
+			}
+			pp->cnt++ ;
+			break ;
+
+	}
+	BulletColor( ) ;											// 弾光る関数
+	Fout( ) ;													//	画面外チェック
 
 }
 
