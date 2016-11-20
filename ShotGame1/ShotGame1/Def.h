@@ -64,6 +64,8 @@
 #define ID_E10S		31
 #define ID_ENE11	32
 #define ID_E11S		33
+#define ID_ENE12	34
+#define ID_E12S		35
 
 #define ID_ESET1	40
 #define ID_ESET2	41
@@ -152,5 +154,8 @@ void ActEnemySet2( void ) ;
 void ActEnemySet3( void ) ;
 void ActEnemy11( void ) ;
 void ActE11Shot( void ) ;
+void ActEnemy12( void ) ;
+void ActE12Shot( void ) ;
+void ActEnemySet4( void ) ;
 
 

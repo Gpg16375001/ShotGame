@@ -1,6 +1,6 @@
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 /*																														*/
-/*													ENEMY11 ƒAƒNƒVƒ‡ƒ“													*/
+/*													ENEMY12 ƒAƒNƒVƒ‡ƒ“													*/
 /*																														*/
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 
@@ -11,9 +11,9 @@
 #include "math.h"
 
 /*______________________________________________________*/
-/*					 ENEMY11 ƒAƒNƒVƒ‡ƒ“					*/
+/*					 ENEMY12 ƒAƒNƒVƒ‡ƒ“					*/
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
-void ActEnemy11( void )
+void ActEnemy12( void )
 {
 	int no ;
 	static int num ;
@@ -28,9 +28,9 @@ void ActEnemy11( void )
 			*/
 			pp->xsize = 70 ;
 			pp->ysize = 70 ;
-			pp->xboff = 0 ;
+			pp->xboff = 70 ;
 			pp->yboff = 70 ;
-			pp->xmoff = 0 ;
+			pp->xmoff = 70 ;
 			pp->ymoff = 210 ;
 			pp->xoff = -35 ;									// ’†S“_‚Ì•ÏX XŽ²
 			pp->yoff = -35 ;									// ’†S“_‚Ì•ÏX YŽ²
@@ -43,59 +43,84 @@ void ActEnemy11( void )
 		case 1 :
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
+			pp->yspd += 0.5 ;
 
-			if ( pp-> ypos >= 70 )
+			switch ( pp->flg )
 			{
-				pp->mode = 2 ;
+				case 0 :
+					if ( pp-> ypos <= 200 )
+					{
+						pp->mode = 2 ;
+					}
+					break ;
+
+				case 1 :
+					if ( pp-> ypos <= 100 )
+					{
+						pp->mode = 2 ;
+					}
+					break ;
+
+				case 2 :
+					if ( pp-> ypos <= 150 )
+					{
+						pp->mode = 2 ;
+					}
+					break ;
+
+				case 3 :
+					if ( pp-> ypos <= 300 )
+					{
+						pp->mode = 2 ;
+					}
+					break ;
+
 			}
 			break ;
 
 		case 2 :
 			if ( pp->time < 0 )
 			{
-				mciSendString( TEXT("play SE_ES2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+				mciSendString( TEXT("play SE_ES1 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 				pp->cnt += 1 ;
-				for ( i = 60 ; i < 70 ; (i += 10) )
+				for ( i = 0 ; i < 360 ; (i += 10) )
 				{
 					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
 					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
 					{
-						obj[no].idnum = ID_E11S ;				// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
+						obj[no].idnum = ID_E12S ;				// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
 						obj[no].mode = 0 ;
 						obj[no].color = pp->color ;
 						obj[no].xpos = pp->xpos ;
 						obj[no].ypos = pp->ypos ;
 						obj[no].xspd = cos( 3.14 / 180 * (i + dere[0]) ) * 4.0 ;
-						obj[no].yspd = sin( 3.14 / 180 * (i + dere[0]) ) * 10.0 ;
+						obj[no].yspd = sin( 3.14 / 180 * (i + dere[0]) ) * 4.0 ;
 
-						pp->time = 2 ;
+						pp->time = 3 ;
+					}
+				}
 
+				for ( i = 0 ; i < 360 ; (i += 72) )
+				{
+					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
+					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
+					{
+						obj[no].idnum = ID_E12S ;				// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
+						obj[no].mode = 0 ;
+						obj[no].color = 2 ;
+						obj[no].xpos = pp->xpos ;
+						obj[no].ypos = pp->ypos ;
+						obj[no].xspd = cos( 3.14 / 180 * (i + dere[0]) ) * 4.0 ;
+						obj[no].yspd = sin( 3.14 / 180 * (i + dere[0]) ) * 4.0 ;
 					}
 
-					if ( pp->cnt > 120 )
+					if ( pp->cnt > 10 )
 					{
 						pp->mode = 3 ;
 					}
+				}
+				dere[0] += 6 ;								// ‰E‰ñ‚è
 
-				}
-
-				if ( dere[0] >= 60 )
-				{
-					dere[1] = 1 ;
-				}
-				else if ( dere[0] <= 0 )
-				{
-					dere[1] = 0 ;
-				}
-
-				if ( dere[1] != 1 )
-				{
-					dere[0] += 6 ;
-				}
-				else
-				{
-					dere[0] -= 6 ;
-				}
 			}
 			pp->time-- ;
 			break ;
@@ -103,6 +128,7 @@ void ActEnemy11( void )
 		case 3 :
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
+			pp->yspd += 0.5 ;
 			break ;
 
 		case 98 :
@@ -139,15 +165,15 @@ void ActEnemy11( void )
 }
 
 /*______________________________________________________*/
-/*					 ENEMY11 ’e ƒAƒNƒVƒ‡ƒ“				*/
+/*					 ENEMY12 ’e ƒAƒNƒVƒ‡ƒ“				*/
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
-void ActE11Shot( void )
+void ActE12Shot( void )
 {
 	switch ( pp->mode )
 	{
 		case 0 :
 			/*
-				ENEMY11 ’e ‰ŠúƒZƒbƒg
+				ENEMY12 ’e ‰ŠúƒZƒbƒg
 			*/
 			pp->xsize = 16 ;
 			pp->ysize = 16 ;
@@ -159,13 +185,20 @@ void ActE11Shot( void )
 			pp->mode = 1 ;
 			pp->xoff = -8 ;										// ’†S“_‚Ì•ÏX XŽ²
 			pp->yoff = -8 ;										// ’†S“_‚Ì•ÏX YŽ²
+			pp->cnt = 0 ;
 			break ;
 
 		case 1 :
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
 
-			pp->yspd += -0.2 ;
+			if ( pp->cnt > 30 )
+			{
+				pp->mode = 0 ;
+				pp->idnum = 0 ;
+			}
+
+			pp->cnt++ ;
 			break ;
 
 	}
