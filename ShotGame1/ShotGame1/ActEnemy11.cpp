@@ -44,7 +44,7 @@ void ActEnemy11( void )
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
 
-			if ( pp-> ypos >= 70 )
+			if ( pp-> ypos >= 350 )
 			{
 				pp->mode = 2 ;
 			}
@@ -72,7 +72,7 @@ void ActEnemy11( void )
 
 					}
 
-					if ( pp->cnt > 120 )
+					if ( pp->cnt > 90 )
 					{
 						pp->mode = 3 ;
 					}

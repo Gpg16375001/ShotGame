@@ -97,6 +97,18 @@ void ActEnemy13( void )
 
 					}
 
+					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
+					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
+					{
+						obj[no].idnum = ID_E13S ;				// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
+						obj[no].mode = 0 ;
+						obj[no].color = pp->color ;				// —t‚Á‚Ï•”•ª
+						obj[no].xpos = pp->xpos ;
+						obj[no].ypos = pp->ypos ;
+						obj[no].xspd = cos( 3.14 / 180 * (i - dere[0] + 40) ) * 3.0 ;
+						obj[no].yspd = sin( 3.14 / 180 * (i - dere[0] + 40) ) * 3.0 ;
+					}
+
 					/*
 						ü‚è•”•ª
 					*/
@@ -111,13 +123,13 @@ void ActEnemy13( void )
 							obj[no].xpos = pp->xpos ;
 							obj[no].ypos = pp->ypos ;
 							obj[no].xspd = cos( 3.14 / 180 * (i + dere[0]) ) * 3.0 ;
-							obj[no].yspd = sin( 3.14 / 180 * (i + dere[0]) ) * 3.0 ;
+							obj[no].yspd = sin( 3.14 / 180 * (i + dere[0]) ) * 3.2 ;
 
 							pp->pchg[1] = 4 ;
 						}
 					}
 
-					if ( pp->cnt > 150 )
+					if ( pp->cnt > 130 )
 					{
 						pp->mode = 3 ;
 					}
@@ -135,11 +147,11 @@ void ActEnemy13( void )
 
 				if ( dere[1] != 1 )
 				{
-					dere[0] += 8 ;
+					dere[0] += 6 ;
 				}
 				else
 				{
-					dere[0] -= 8 ;
+					dere[0] -= 6 ;
 				}
 			}
 

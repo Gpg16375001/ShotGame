@@ -38,7 +38,7 @@ void ActPlayer( void )
 			pp->cnt = 0 ;
 			pp->yspd = -4.0 ;
 			mciSendString( TEXT("play SE_SP3 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
-//			mciSendString( TEXT("play SE_ST from 0 notify") , NULL , 0 , hwnd ) ;	// 01
+			mciSendString( TEXT("play SE_ST from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 			break ;
 
 		case 1 :

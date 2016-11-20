@@ -59,7 +59,7 @@ void ActEnemy4( void )
 			{
 				mciSendString( TEXT("play SE_ES1 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 				pp->cnt += 1 ;
-				for ( i = 0 ; i < 360 ; (i += 36) )
+				for ( i = 0 ; i < 360 ; (i += 45) )
 				{
 					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
 					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
@@ -77,7 +77,7 @@ void ActEnemy4( void )
 
 			}
 			pp->mode = 1 ;
-			if ( pp->cnt > 120 )
+			if ( pp->cnt > 110 )
 			{
 				pp->mode = 3 ;
 			}

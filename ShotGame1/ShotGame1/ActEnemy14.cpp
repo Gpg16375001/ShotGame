@@ -130,7 +130,7 @@ void ActEnemy14( void )
 						pp->time = 10 ;
 					}
 
-					if ( pp->cnt > 29 )
+					if ( pp->cnt > 32 )
 					{
 						pp->mode = 3 ;
 					}

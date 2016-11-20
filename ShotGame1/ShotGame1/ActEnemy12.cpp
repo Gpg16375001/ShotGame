@@ -38,6 +38,7 @@ void ActEnemy12( void )
 			pp->mode = 1 ;										// mode1 ‚ÉˆÚ‚é
 			pp->time = 10 ;
 			pp->cnt = 0 ;
+			mciSendString( TEXT("play SE_SP2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 			break ;
 
 		case 1 :
@@ -69,7 +70,7 @@ void ActEnemy12( void )
 					break ;
 
 				case 3 :
-					if ( pp-> ypos <= 300 )
+					if ( pp-> ypos <= 350 )
 					{
 						pp->mode = 2 ;
 					}

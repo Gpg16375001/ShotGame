@@ -25,55 +25,53 @@ void ActEnemy3( void )
 			/*
 				ENEMY3 初期セット
 			*/
-			pp->xm = 400.0 ;
-			pp->ym = 300.0 ;
-			pp->xpos = 0.0 ;
-			pp->ypos = 0.0 ;
 			pp->xsize = 70 ;
 			pp->ysize = 70 ;
-			pp->xboff = 0 ;
-			pp->yboff = 0 ;
-			pp->xmoff = 0 ;
-			pp->ymoff = 140 ;
+			pp->xboff = 210 ;
+			pp->yboff = 70 ;
+			pp->xmoff = 210 ;
+			pp->ymoff = 210 ;
 			pp->xoff = -35 ;									// 中心点の変更 X軸
 			pp->yoff = -35 ;									// 中心点の変更 Y軸
 			pp->idx = 2 ;
-			pp->mode = 2 ;										// mode1 に移る
+			pp->mode = 1 ;										// mode1 に移る
 
 			pp->cnt = 0 ;
 			break ;
 
 		case 1 :
-			pp->cnt += 10 ;
-			pp->xpos = cos( 3.14 / 180 * pp->cnt ) * 60.0 ;		// *半径
-			pp->ypos = sin( 3.14 / 180 * pp->cnt ) * 60.0 ;
-
-			pp->xpos += pp->xm ;
-			pp->ypos += pp->ym ;
+			pp->xpos += pp->xspd ;
+			pp->ypos += pp->yspd ;
+			if ( pp->ypos <= 350 )
+			{
+				pp->mode = 2 ;
+				pp->xm = pp->xpos ;
+				pp->ym = pp->ypos - 140 ;
+				pp->cnt = 90 ;
+			}
 			break ;
 
 		case 2 :
-			pp->xpos = 400.0 ;
-			pp->ypos = 300.0 ;
-			if ( GetKeyState(VK_F1) < 0 )
+			pp->cnt += 10 ;
+			pp->xpos = cos( 3.14 / 180 * pp->cnt ) * 140.0 ;	// *半径
+			pp->ypos = sin( 3.14 / 180 * pp->cnt ) * 140.0 ;
+
+			pp->xpos += pp->xm ;
+			pp->ypos += pp->ym ;
+
+			if ( pp->cnt >= 450 )
 			{
-				for ( i = 0 ; i < 360 ; (i += 45) )
-				{
-					no = ObjSearch( O_ES , MAX_ES ) ;
-					if ( no != -1 )
-					{
-						obj[no].idnum = ID_E3S ;
-						obj[no].mode = 0 ;
-						obj[no].xpos = pp->xpos ;
-						obj[no].ypos = pp->ypos ;
-						obj[no].xspd = cos( 3.14 / 180 * i ) * 8.0 ;
-						obj[no].yspd = sin( 3.14 / 180 * i ) * 8.0 ;
-					}
-				}
+				pp->mode = 3 ;
+				pp->cnt = 0 ;
 			}
 			break ;
 
 		case 3 :
+			pp->xpos += pp->xspd ;
+			pp->ypos += pp->yspd ;
+			break ;
+
+		case 4 :
 			pp->ym += 4.0 ;
 			pp->cnt += 10 ;
 			pp->xpos = cos( 3.14 / 180 * pp->cnt ) * 60.0 ;		// *半径
@@ -95,6 +93,7 @@ void ActEnemy3( void )
 				pp->time = 6 ;
 				pp->mode = 99 ;
 			}
+			pscore += 11040 ;
 			break ;
 
 		case 99 :
@@ -109,7 +108,9 @@ void ActEnemy3( void )
 			break ;
 
 	}
-	Fout( ) ;					//	画面外チェック
+	EPscheck( ) ;
+	EPcheck( ) ;
+	Fout( ) ;													//	画面外チェック
 
 }
 
@@ -145,7 +146,7 @@ void ActE3Shot( void )
 			break ;
 
 	}
-	Fout( ) ;					//	画面外チェック
+	Fout( ) ;													//	画面外チェック
 
 }
 
