@@ -35,6 +35,7 @@ void ActBoss( void )
 			pp->mode = 1 ;										// mode1 ‚ÉˆÚ‚é
 
 			pp->yspd = 4.0 ;
+			mciSendString( TEXT("play SE_END from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 			break ;
 
 		case 1 :

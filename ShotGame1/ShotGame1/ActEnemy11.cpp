@@ -37,6 +37,7 @@ void ActEnemy11( void )
 			pp->idx = 2 ;
 			pp->mode = 1 ;										// mode1 ‚ÉˆÚ‚é
 			pp->time = 10 ;
+			pp->cnt = 0 ;
 			break ;
 
 		case 1 :
@@ -59,15 +60,15 @@ void ActEnemy11( void )
 					no = ObjSearch( O_ES , MAX_ES ) ;	// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
 					if ( no != -1 )						// ‹ó‚¢‚Ä‚¢‚½‚ç
 					{
-						obj[no].idnum = ID_E10S ;		// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
+						obj[no].idnum = ID_E11S ;		// ‚»‚Ì”z—ñ‚É’e‚ð“ü‚ê‚é
 						obj[no].mode = 0 ;
 						obj[no].color = pp->color ;
 						obj[no].xpos = pp->xpos ;
 						obj[no].ypos = pp->ypos ;
-						obj[no].xspd = cos( 3.14 / 180 * (i + dere[0]) ) * 8.0 ;
-						obj[no].yspd = sin( 3.14 / 180 * (i + dere[0]) ) * 8.0 ;
+						obj[no].xspd = cos( 3.14 / 180 * (i + dere[0]) ) * 4.0 ;
+						obj[no].yspd = sin( 3.14 / 180 * (i + dere[0]) ) * 10.0 ;
 
-						pp->time = 1 ;
+						pp->time = 2 ;
 
 					}
 
@@ -89,21 +90,19 @@ void ActEnemy11( void )
 
 				if ( dere[1] != 1 )
 				{
-					dere[0] += 4 ;
+					dere[0] += 6 ;
 				}
 				else
 				{
-					dere[0] -= 4 ;
+					dere[0] -= 6 ;
 				}
 			}
-
 			pp->time-- ;
 			break ;
 
 		case 3 :
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
-
 			break ;
 
 		case 98 :
@@ -164,6 +163,8 @@ void ActE11Shot( void )
 		case 1 :
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
+
+			pp->yspd += -0.2 ;
 			break ;
 
 	}

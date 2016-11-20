@@ -123,7 +123,8 @@ LRESULT CALLBACK WndProc (
 
 			// Sound Set
 			mciSendString( TEXT("close all") , NULL , 0 , hWnd ) ;	// 00
-			mciSendString( TEXT("open sound/start.wav alias SE_ST type waveaudio") , NULL , 0 , hWnd ) ;	// PlayerÇÃíe
+			mciSendString( TEXT("open sound/start.wav alias SE_ST type waveaudio") , NULL , 0 , hWnd ) ;	// äJéníºå„
+			mciSendString( TEXT("open sound/Boss.wav alias SE_END type waveaudio") , NULL , 0 , hWnd ) ;	// èIóπ
 			mciSendString( TEXT("open sound/shot1.wav alias SE_PS type waveaudio") , NULL , 0 , hWnd ) ;	// PlayerÇÃíe
 			mciSendString( TEXT("open sound/shot2.wav alias SE_ES1 type waveaudio") , NULL , 0 , hWnd ) ;	// ENEMY ÇÃíe
 			mciSendString( TEXT("open sound/shot3.wav alias SE_ES2 type waveaudio") , NULL , 0 , hWnd ) ;	// ENEMY ÇÃíe

@@ -135,6 +135,7 @@ void ActEnemy9( void )
 					pp->yspd = 0 ;
 					if ( pp->time < 0 )
 					{
+						mciSendString( TEXT("play SE_ES2 from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 						pp->cnt += 10 ;
 						for ( i = 0 ; i < 3 ; i++ )
 						{
