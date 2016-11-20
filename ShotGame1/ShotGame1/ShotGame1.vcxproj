@@ -77,10 +77,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActEnemy14.cpp" />
     <ClCompile Include="ActBoss.cpp" />
     <ClCompile Include="ActEnemy10.cpp" />
     <ClCompile Include="ActEnemy11.cpp" />
     <ClCompile Include="ActEnemy12.cpp" />
+    <ClCompile Include="ActEnemy13.cpp" />
     <ClCompile Include="ActEnemy3.cpp" />
     <ClCompile Include="ActEnemy4.cpp" />
     <ClCompile Include="ActEnemy5.cpp" />
@@ -92,6 +94,7 @@
     <ClCompile Include="ActEnemySet2.cpp" />
     <ClCompile Include="ActEnemySet3.cpp" />
     <ClCompile Include="ActEnemySet4.cpp" />
+    <ClCompile Include="ActEnemySet5.cpp" />
     <ClCompile Include="ActObj.cpp" />
     <ClCompile Include="ActEnemy1.cpp" />
     <ClCompile Include="ActEnemy2.cpp" />
