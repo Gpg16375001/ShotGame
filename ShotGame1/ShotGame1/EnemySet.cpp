@@ -10,6 +10,10 @@
 #include "Work.h"
 
 int EneTbl[][5] = {
+	{    6 ,  ID_BOMB , 180 ,  600 , 0 } ,					// SET 1	配置
+	{    7 ,  ID_BOMB , 330 ,  500 , 0 } ,					// SET 1	配置
+	{    8 ,  ID_BOMB , 500 ,  650 , 0 } ,					// SET 1	配置
+	{    9 ,  ID_BOMB , 650 ,  580 , 0 } ,					// SET 1	配置
 	{   10 , ID_ESET1 ,   0 ,    0 , 0 } ,					// SET 1	配置
 	{  150 , ID_ENE10 , 400 ,  -50 , 0 } ,					// ENEMY 10	配置
 	{  450 , ID_ESET2 ,   0 ,    0 , 0 } ,					// SET 2	配置

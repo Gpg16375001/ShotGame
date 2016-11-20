@@ -81,9 +81,6 @@
 
 #define ID_BOMB		59
 
-/* ____ マクロ ____ */
-#define MNAME(  )		(  )
-
 /* ____ 構造体 ____ */
 typedef struct {
 	int idnum ;							// 配列位置 ( 番号 )
