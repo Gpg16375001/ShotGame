@@ -8,6 +8,7 @@
 #include <windows.h>
 #include "Def.h"
 #include "Work.h"
+#include "math.h"
 
 /*______________________________________________________*/
 /*					  PLAYER ƒAƒNƒVƒ‡ƒ“					*/
@@ -93,22 +94,24 @@ void ActPlayer( void )
 			pp->xpos += pp->xspd ;
 			pp->ypos += pp->yspd ;
 
-			if ( (GetKeyState(VK_SPACE) < 0) && (psflg == 0) )
+			if ( (GetKeyState(VK_SPACE) < 0) && (psflg[0] == 0) )
 			{
 				no = ObjSearch( O_PS , MAX_PS ) ;				// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ğŒ©‚Â‚¯‚é
 				if ( no != -1 )									// ‹ó‚¢‚Ä‚¢‚½‚ç
 				{
 					mciSendString( TEXT("play SE_PS from 0 notify") , NULL , 0 , hwnd ) ;	// 01
 
+					obj[no].xpos = pp->xpos ;
+					obj[no].ypos = pp->ypos - 50 ;				// ‰Šú•`‰æ‚ÌˆÊ’u•ÏX
 					obj[no].idnum = ID_PS1 ;					// ‚»‚Ì”z—ñ‚É’e‚ğ“ü‚ê‚é
 					obj[no].mode = 0 ;
 				}
-				psflg = 1 ;
+				psflg[0] = 1 ;
 			}
 
 			if ( (GetKeyState(VK_SPACE) >= 0) && (psflg) )
 			{
-				psflg = 0 ;
+				psflg[0] = 0 ;
 			}
 			if ( pp->cnt < 11 )
 			{
@@ -133,8 +136,6 @@ void ActPshot( void )
 			/*
 				PLAYER ’e ‰ŠúƒZƒbƒg
 			*/
-			pp->xpos = obj[O_PLY].xpos ;
-			pp->ypos = obj[O_PLY].ypos - 50 ;					// ‰Šú•`‰æ‚ÌˆÊ’u•ÏX
 			pp->xsize = 7 ;
 			pp->ysize = 30 ;
 			pp->xboff = 0 ;
@@ -193,6 +194,138 @@ void PlayerMove( void )
 			break ;
 
 	}
+}
+
+/*______________________________________________________*/
+/*				  SMALL PLAYER ƒAƒNƒVƒ‡ƒ“				*/
+/*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
+void ActSmallPlayer( void )
+{
+	int no ;
+
+	switch ( pp->mode )
+	{
+		case 0 :
+			/*
+				PLAYER ‰ŠúƒZƒbƒg
+			*/
+			pp->xsize = 16 ;
+			pp->ysize = 16 ;
+			pp->xboff = 0 ;
+			pp->yboff = 16 * 5 ;
+			pp->xmoff = 64 ;
+			pp->ymoff = 16 * 5 ;
+			pp->xoff = -8 ;										// ’†S“_‚Ì•ÏX X²
+			pp->yoff = -8 ;										// ’†S“_‚Ì•ÏX Y²
+			pp->idx = 4 ;
+			pp->mode = 1 ;
+
+			pp->cnt = 0 ;
+			pp->yspd = -4.0 ;
+			break ;
+
+		case 1 :
+			pp->cnt += 10 ;
+			pp->xm = obj[O_PLY].xpos ;
+			pp->ym = obj[O_PLY].ypos ;
+			pp->xpos = cos( 3.14 / 180 * pp->cnt ) * 60.0 ;		// *”¼Œa
+			pp->ypos = sin( 3.14 / 180 * pp->cnt ) * 60.0 ;
+
+			pp->xpos += pp->xm ;
+			pp->ypos += pp->ym ;
+
+			if ( (GetKeyState(VK_SPACE) < 0) && (psflg[1] == 0) )
+			{
+				no = ObjSearch( O_PS , MAX_PS ) ;				// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ğŒ©‚Â‚¯‚é
+				if ( no != -1 )									// ‹ó‚¢‚Ä‚¢‚½‚ç
+				{
+					obj[no].xpos = pp->xpos ;
+					obj[no].ypos = pp->ypos ;					// ‰Šú•`‰æ‚ÌˆÊ’u•ÏX
+					obj[no].idnum = ID_PS1 ;					// ‚»‚Ì”z—ñ‚É’e‚ğ“ü‚ê‚é
+					obj[no].mode = 0 ;
+				}
+				psflg[1] = 1 ;
+			}
+
+			if ( (GetKeyState(VK_SPACE) >= 0) && (psflg[1]) )
+			{
+				psflg[1] = 0 ;
+			}
+			if ( pp->cnt < 11 )
+			{
+				pp->cnt++ ;
+			}
+			break ;
+
+	}
+	BulletColor( ) ;											// ’eŒõ‚éŠÖ”
+
+}
+
+/*______________________________________________________*/
+/*				  SMALL PLAYER2 ƒAƒNƒVƒ‡ƒ“				*/
+/*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
+void ActSmallPlayer2( void )
+{
+	int no ;
+
+	switch ( pp->mode )
+	{
+		case 0 :
+			/*
+				PLAYER ‰ŠúƒZƒbƒg
+			*/
+			pp->xsize = 16 ;
+			pp->ysize = 16 ;
+			pp->xboff = 0 ;
+			pp->yboff = 16 * 5 ;
+			pp->xmoff = 64 ;
+			pp->ymoff = 16 * 5 ;
+			pp->xoff = -8 ;										// ’†S“_‚Ì•ÏX X²
+			pp->yoff = -8 ;										// ’†S“_‚Ì•ÏX Y²
+			pp->idx = 4 ;
+			pp->mode = 1 ;
+
+			pp->cnt = 0 ;
+			pp->yspd = -4.0 ;
+			break ;
+
+		case 1 :
+			pp->cnt -= 10 ;
+			pp->xm = obj[O_PLY].xpos ;
+			pp->ym = obj[O_PLY].ypos ;
+			pp->xpos = cos( 3.14 / 180 * pp->cnt ) * 40.0 ;		// *”¼Œa
+			pp->ypos = sin( 3.14 / 180 * pp->cnt ) * 40.0 ;
+
+			pp->xpos += pp->xm ;
+			pp->ypos += pp->ym ;
+
+			if ( (GetKeyState(VK_SPACE) < 0) && (psflg[2] == 0) )
+			{
+				no = ObjSearch( O_PS , MAX_PS ) ;				// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ğŒ©‚Â‚¯‚é
+				if ( no != -1 )									// ‹ó‚¢‚Ä‚¢‚½‚ç
+				{
+					obj[no].xpos = pp->xpos ;
+					obj[no].ypos = pp->ypos ;					// ‰Šú•`‰æ‚ÌˆÊ’u•ÏX
+					obj[no].idnum = ID_PS1 ;					// ‚»‚Ì”z—ñ‚É’e‚ğ“ü‚ê‚é
+					obj[no].mode = 0 ;
+				}
+				psflg[2] = 1 ;
+			}
+
+			if ( (GetKeyState(VK_SPACE) >= 0) && (psflg[2]) )
+			{
+				psflg[2] = 0 ;
+			}
+			if ( pp->cnt < 11 )
+			{
+				pp->cnt++ ;
+			}
+			break ;
+
+	}
+	BulletColor( ) ;											// ’eŒõ‚éŠÖ”
+
 }
 
 

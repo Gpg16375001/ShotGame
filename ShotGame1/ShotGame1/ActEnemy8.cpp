@@ -44,7 +44,7 @@ void ActEnemy8( void )
 
 			if ( pp->time < 0 )
 			{
-				for ( i = 0 ; i < 360 ; (i += 20) )
+				for ( i = 0 ; i < 360 ; (i += 5) )
 				{
 					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
 					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
@@ -54,13 +54,13 @@ void ActEnemy8( void )
 						obj[no].color = pp->color ;
 						obj[no].xpos = pp->xpos ;
 						obj[no].ypos = pp->ypos ;
-						obj[no].xspd = cos( 3.14 / 180 * i ) * 12.0 ;
-						obj[no].yspd = sin( 3.14 / 180 * (i * 34) ) * 3.0 ;
+						obj[no].xspd = cos( 3.14 / 180 * i ) * 8.0 ;
+						obj[no].yspd = sin( 3.14 / 180 * i ) * 8.0 ;
 
 						pp->time = 20 ;
 					}
 				}
-				for ( i = 0 ; i < 360 ; (i += 20) )
+				for ( i = 0 ; i < 360 ; (i += 5) )
 				{
 					no = ObjSearch( O_ES , MAX_ES ) ;			// ‹ó‚¢‚Ä‚¢‚é”z—ñ‚ðŒ©‚Â‚¯‚é
 					if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
@@ -70,8 +70,8 @@ void ActEnemy8( void )
 						obj[no].color = pp->color ;
 						obj[no].xpos = pp->xpos ;
 						obj[no].ypos = pp->ypos ;
-						obj[no].xspd = cos( 3.14 / 180 * i ) * 3.0 ;
-						obj[no].yspd = sin( 3.14 / 180 * (i * 34) ) * 12.0 ;
+						obj[no].xspd = cos( 3.14 / 180 * i ) * 8.0 ;
+						obj[no].yspd = sin( 3.14 / 180 * i ) * 8.0 ;
 
 						pp->time = 30 ;
 					}

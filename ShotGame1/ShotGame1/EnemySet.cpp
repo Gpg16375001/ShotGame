@@ -10,6 +10,8 @@
 #include "Work.h"
 
 int EneTbl[][5] = {
+	{    1 ,  ID_SPLY ,   0 ,    0 , 0 } ,					// Small Player	配置
+	{    2 , ID_SPLY2 ,   0 ,    0 , 0 } ,					// Small Player	配置
 	{    6 ,  ID_BOMB , 180 ,  600 , 0 } ,					// SET 1	配置
 	{    7 ,  ID_BOMB , 330 ,  500 , 0 } ,					// SET 1	配置
 	{    8 ,  ID_BOMB , 500 ,  650 , 0 } ,					// SET 1	配置

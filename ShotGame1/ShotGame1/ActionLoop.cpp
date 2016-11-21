@@ -23,8 +23,8 @@ TBLJP ActJpTbl[ ] = {
 	ActScore ,								//  7
 	ActLbase ,								//  8
 	ActLife ,								//  9
-	ActNull ,								// 10
-	ActNull ,								// 11
+	ActSmallPlayer ,						// 10
+	ActSmallPlayer2 ,								// 11
 	ActNull ,								// 12
 	ActNull ,								// 13
 	ActEnemy3 ,								// 14	ENEMY3 ‚ÌƒAƒNƒVƒ‡ƒ“

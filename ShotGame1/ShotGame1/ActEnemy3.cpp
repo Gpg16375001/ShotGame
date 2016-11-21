@@ -146,6 +146,7 @@ void ActE3Shot( void )
 			break ;
 
 	}
+	BulletColor( ) ;											// 弾光る関数
 	Fout( ) ;													//	画面外チェック
 
 }

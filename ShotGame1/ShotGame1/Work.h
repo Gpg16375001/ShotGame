@@ -12,7 +12,7 @@ extern HDC		hDCBack ;
 extern HBITMAP	hBmpTbl[20] ;
 extern BOOL		tmf ;
 extern HWND		hwnd ;															// 1 = タイマー処理チェックフラグ
-extern BOOL		psflg ;
+extern BOOL		psflg[4] ;
 extern int etim ;
 extern int ecnt ;
 extern int pscore ;																// player score

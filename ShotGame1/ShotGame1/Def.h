@@ -18,6 +18,8 @@
 #define ID_SCORE	7
 #define ID_LBASE	8
 #define ID_LIFE		9
+#define ID_SPLY		10					// Small プレイヤーのID
+#define ID_SPLY2	11					// Small2 プレイヤーのID
 
 #define O_BG		1
 #define O_PS		10					// 10 - 89 (80)
@@ -30,6 +32,7 @@
 #define O_LIFE		4910
 #define O_LBASE		4911
 
+#define MAX_PLY		10					// 10		プレイヤーの描画の最大数
 #define MAX_PS		80					// 80		プレイヤーの弾描画の最大数
 #define MAX_ES		4600				// 4600		エネミーの弾描画の最大数
 #define MAX_ENE		50					// 50		エネミー描画の最大数
@@ -168,6 +171,7 @@ void ActEnemy14( void ) ;
 void ActE14Shot( void ) ;
 void ActE4Shot( void ) ;
 void ActBossShot( void ) ;
-
+void ActSmallPlayer( void ) ;
+void ActSmallPlayer2( void ) ;
 
 

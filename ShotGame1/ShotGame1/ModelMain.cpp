@@ -160,9 +160,6 @@ LRESULT CALLBACK WndProc (
 			wsprintf( s , TEXT("time = %d") , etim ) ;
 			TextOut( hDC , 0 , 0 , s , lstrlen(s) ) ;
 
-			wsprintf( s , TEXT("[plyer]cnt = %d") , obj[O_PLY].cnt ) ;
-			TextOut( hDC , 0 , 20 , s , lstrlen(s) ) ;
-
 			EndPaint( hWnd , &ps ) ;
 			tmf = 0 ;
 			break ;

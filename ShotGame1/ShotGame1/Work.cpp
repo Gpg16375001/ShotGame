@@ -15,11 +15,11 @@ HDC		hDCBack ;
 HBITMAP	hBmpTbl[20] ;
 BOOL	tmf = 0 ;
 HWND	hwnd ;															// 1 = タイマー処理チェックフラグ
-BOOL	psflg ;
+BOOL	psflg[4] ;
 int etim ;																// エネミーが出てくるときのカウント数
 int ecnt ;
 int pscore ;															// score
-int plife ;																// player life
+int plife ;															// player life
 int ecount[5] ;															// エネミーセットのエネミーの数
 
 

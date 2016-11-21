@@ -52,7 +52,9 @@ void InitSet( void )
 	etim = 0 ;
 	ecnt = 0 ;
 
-	psflg = 0 ;													// 弾制限のフラグ
+	psflg[0] = 0 ;													// 弾制限のフラグ
+	psflg[1] = 0 ;													// 弾制限のフラグ
+	psflg[2] = 0 ;													// 弾制限のフラグ
 	pscore = 0 ;
 	plife = 300 ;
 }
