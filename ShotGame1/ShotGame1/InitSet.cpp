@@ -14,6 +14,14 @@
 /*ÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅP*/
 void InitSet( void )
 {
+	int i ;
+
+	for ( i = 0 ; i < MAXOBJ ; i++ )
+	{
+		obj[i].idnum = 0 ;
+		obj[i].mode = 0 ;
+	}
+
 	obj[O_BG].idnum = ID_BG ;									// îwåi ÇåƒÇ‘
 	obj[O_BG].mode = 0 ;										// èâä˙ÉZÉbÉgÇåƒÇ—èoÇ∑
 
@@ -57,6 +65,12 @@ void InitSet( void )
 	psflg[2] = 0 ;													// íeêßå¿ÇÃÉtÉâÉO
 	pscore = 0 ;
 	plife = 300 ;
+
+	ecount[0] = 0 ;
+	ecount[1] = 0 ;
+	ecount[2] = 0 ;
+	ecount[3] = 0 ;
+	ecount[4] = 0 ;
 }
 
 

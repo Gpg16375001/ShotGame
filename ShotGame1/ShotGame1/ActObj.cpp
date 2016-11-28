@@ -332,5 +332,16 @@ void ActLife( void )
 
 }
 
+/*______________________________________________________*/
+/*						  RESET							*/
+/*ÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅPÅP*/
+void ActReset( void )
+{
+	if ( GetKeyState(VK_ESCAPE) < 0 )
+	{
+		InitSet( ) ;
+	}
+}
+
 
 

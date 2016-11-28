@@ -173,5 +173,6 @@ void ActE4Shot( void ) ;
 void ActBossShot( void ) ;
 void ActSmallPlayer( void ) ;
 void ActSmallPlayer2( void ) ;
+void ActReset( void ) ;
 
 
